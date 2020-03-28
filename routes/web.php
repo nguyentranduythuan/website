@@ -1,0 +1,82 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', 'HomeController@index')->name('index');
+Route::get('about.html', 'HomeController@about')->name('about');
+Route::get('service.html', 'HomeController@service')->name('service');
+Route::get('service-detail/{id}', 'HomeController@service_detail')->name('service-detail');
+Route::get('projects.html', 'HomeController@projects')->name('projects');
+Route::get('category-project/{slug}','HomeController@getProjectCate');
+// Route::get('projects/{slug}', 'HomeController@project')->name('projects');
+//Route::get('project/{id}','HomeController@getProject');
+Route::get('project-detail/{slug}', 'HomeController@projects_detail')->name('projects');
+Route::get('blog.html', 'HomeController@blogs')->name('blog');
+Route::get('tag/{slug}','HomeController@blogByTag');
+Route::get('blog-details/{slug}', 'HomeController@blogs_detail')->name('blog');
+Route::get('contact.html', 'HomeController@contact')->name('contact');
+Route::post('contact.html', 'HomeController@postContact')->name('postData');
+
+Route::get('export', 'HomeController@export')->name('export');
+Route::get('import_export', 'HomeController@import_export');
+Route::post('import', 'HomeController@import')->name('import');
+
+
+Route::group(['prefix' => 'client', 'middleware' => ['web'], 'namespace' => 'Client'], function () {
+    
+	Route::get('/', ['as' => '', 'uses' => 'HomeController@index'])->name('home');
+	Route::get('/login', ['as' => '', 'uses' => 'AccountController@login'])->name('login');
+	Route::post('/login', ['as' => '', 'uses' => 'AccountController@postLogin']);
+	Route::get('/logout', ['as' => '', 'uses' => 'AccountController@logout']);
+	Route::get('/profile', ['as' => '', 'uses' => 'AccountController@profile'])->name('profile');
+	Route::post('/profile', ['as' => '', 'uses' => 'AccountController@postProfile']);
+	Route::post('/profile-change-password', ['as' => '', 'uses' => 'AccountController@postChangePassword']);
+	Route::post('/profile-change-avatar', ['as' => '', 'uses' => 'AccountController@postChangeAvatar']);
+
+	Route::get('/payment', ['as' => '', 'uses' => 'AccountController@payment'])->name('payment');
+	Route::post('/payment/ajax_nap_tien', ['as' => '', 'uses' => 'AccountController@listPaymentAjax'])->name('payment');
+	Route::get('/payment/history', ['as' => '', 'uses' => 'AccountController@paymentHistory'])->name('payment');
+	Route::post('/payment/ajax_history', ['as' => '', 'uses' => 'AccountController@paymentHistoryAjax'])->name('payment');
+
+	Route::get('/create_campaign', ['as' => '', 'uses' => 'AccountController@createCampaign'])->name('create_campaign');
+	Route::post('/create_campaign', ['as' => '', 'uses' => 'AccountController@postCreateCampaign']);
+
+	Route::get('/list_campaign', ['as' => '', 'uses' => 'AccountController@listCampaign'])->name('list_campaign');
+	Route::post('/list_campaign/ajax', ['as' => '', 'uses' => 'AccountController@listCampaignAjax']);
+	Route::get('/list_campaign/edit/{id}', ['as' => '', 'uses' => 'AccountController@editCampaign']);
+
+	Route::get('/import_sms', ['as' => '', 'uses' => 'SMSController@importDataSms'])->name('import_sms');
+	Route::post('/import_sms/ajax', ['as' => '', 'uses' => 'SMSController@listDataSMSAjax']);
+	Route::post('/import_sms/import_data', ['as' => '', 'uses' => 'SMSController@postImportDataSMS']);
+	Route::get('/report_sms', ['as' => '', 'uses' => 'SMSController@reportDataSms'])->name('report_sms');
+	Route::post('/report_sms/ajax', ['as' => '', 'uses' => 'SMSController@reportDataSmsAjax']);
+	Route::post('/report_sms/download', ['as' => '', 'uses' => 'SMSController@reportDataSmsDownload']);
+	Route::get('/api_sms', ['as' => '', 'uses' => 'SMSController@APISMS'])->name('api_sms');
+	Route::post('/api_sms/create_api', ['as' => '', 'uses' => 'SMSController@createAPI']);
+	Route::get('/api_sms/renewkey/{id}', ['as' => '', 'uses' => 'SMSController@changeAPI']);
+	Route::post('/api_sms/ajax', ['as' => '', 'uses' => 'SMSController@APISMSAjax']);
+	Route::post('/api_sms/update-status', ['as' => '', 'uses' => 'SMSController@APISMSUpdateStatus']);
+
+	Route::get('/import_phone', ['as' => '', 'uses' => 'CheckPhoneController@importDataCheckPhone'])->name('import_phone');
+	Route::post('/import_phone/ajax', ['as' => '', 'uses' => 'CheckPhoneController@listDataCheckPhoneAjax']);
+	Route::post('/import_phone/import_data', ['as' => '', 'uses' => 'CheckPhoneController@postImportDataCheckPhone']);
+	Route::get('/report_phone', ['as' => '', 'uses' => 'CheckPhoneController@reportDataPhone'])->name('report_phone');
+	Route::post('/report_phone/ajax', ['as' => '', 'uses' => 'CheckPhoneController@reportDataPhoneAjax']);
+	Route::post('/report_phone/download', ['as' => '', 'uses' => 'CheckPhoneController@reportDataPhoneDownload']);
+	Route::get('/api_phone', ['as' => '', 'uses' => 'CheckPhoneController@APICheckPhone'])->name('api_phone');
+	Route::post('/api_phone/create_api', ['as' => '', 'uses' => 'CheckPhoneController@createAPI']);
+	Route::get('/api_phone/renewkey/{id}', ['as' => '', 'uses' => 'CheckPhoneController@changeAPI']);
+	Route::post('/api_phone/ajax', ['as' => '', 'uses' => 'CheckPhoneController@APICheckPhoneAjax']);
+	Route::post('/api_phone/update-status', ['as' => '', 'uses' => 'CheckPhoneController@APICheckPhoneUpdateStatus']);
+
+});
+

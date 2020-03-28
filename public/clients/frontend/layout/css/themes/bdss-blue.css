@@ -1,0 +1,391 @@
+a {
+  color: #267ebb;
+}
+a:hover {
+  color: #267ebb;
+}
+.pre-header a:hover {
+  color: #267ebb;
+}
+.pre-header a.active {
+  color: #267ebb;
+  text-decoration: underline;
+}
+.shop-currencies a.current {
+  color: #267ebb;
+}
+.header-navigation ul > li.active > a,
+.header-navigation ul > li > a:hover,
+.header-navigation ul > li > a:focus,
+.header-navigation ul > li.open > a,
+.header-navigation ul > li.open > a:hover,
+.header-navigation ul > li.open > a:focus {
+  color: #267ebb;
+}
+.header-navigation li.menu-search i:hover {
+  color: #267ebb;
+}
+.sidebar a:hover {
+  color: #267ebb;
+}
+.sidebar .dropdown.open .dropdown-toggle:hover {
+  color: #267ebb;
+}
+.sidebar-menu .dropdown-menu li > a:hover, .sidebar-menu .dropdown-menu li > a:focus, .sidebar-menu li.active > a, .sidebar-menu li.active > a:hover {
+  color: #267ebb;
+}
+.content-page a:hover, 
+.sidebar2 a:hover {
+  color: #267ebb;
+  text-decoration: none;
+}
+.content-page a, 
+.sidebar2 a{
+  line-height: 21px;
+}
+.content-page .link, .content-page .link:hover, .content-page .link:active {
+  color: #267ebb;
+}
+.page-404 .number,
+.page-500 .number {
+  color: #267ebb;
+}
+.content-form-page a:hover {
+  color: #267ebb;
+}
+.quote-v1 a.btn-transparent:hover {
+  background: #267ebb;
+}
+.recent-work h2 a:hover {
+  color: #267ebb;
+}
+.recent-work .recent-work-item .fa:hover {
+  color: #267ebb;
+}
+.our-clients h2 a:hover {
+  color: #267ebb;
+}
+.front-team h3 strong {
+  color: #267ebb;
+}
+.ecommerce .header-navigation ul > li.active > a,
+.ecommerce .header-navigation ul > li > a:hover,
+.ecommerce .header-navigation ul > li > a:focus,
+.ecommerce .header-navigation ul > li.open > a,
+.ecommerce .header-navigation ul > li.open > a:hover,
+.ecommerce .header-navigation ul > li.open > a:focus {
+  color: #267ebb;
+}
+.product-item h3 a:hover {
+  color: #267ebb;
+}
+.checkout-page a:hover {
+  color: #267ebb;
+}
+
+
+.langs-block-others:after { 
+  border-bottom: 8px solid #267ebb;
+}
+.header-navigation > ul > li.dropdown:hover > a:after { 
+  border-bottom: 8px solid #267ebb;
+}
+.header-navigation .dropdown-menu > li > a:hover,
+.header-navigation .dropdown-menu > li.active > a,
+.header-navigation .header-navigation-content .header-navigation-col li > a:hover,
+.header-navigation .header-navigation-content .header-navigation-col li.active > a {
+  background: #267ebb;
+  color: #fff;
+}
+.header-navigation .dropdown-menu .header-navigation-content-ext li > a:hover,
+.header-navigation .dropdown-menu .header-navigation-content-ext li.active > a {
+  background: #fff;
+  color: #267ebb;
+}
+.header-navigation .search-box:after { 
+  border-bottom: 8px solid #267ebb;
+}
+.header-navigation .search-box {
+  border-top: solid 2px #267ebb;
+}
+.title-wrapper h1 span {
+  color: #267ebb;
+}
+.breadcrumb > .active {
+  color: #267ebb;
+}
+.form-info h2 em {
+  color: #267ebb;
+}
+.nav-tabs {
+  border-color: #267ebb;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  background: #267ebb;
+}
+.content-search h1 em {
+  color: #267ebb;
+}
+.recent-work .recent-work-item:hover a.recent-work-description {
+  background: #267ebb;
+}
+.testimonials-v1 blockquote:after { 
+  background-color: #267ebb;
+}
+.testimonials-v1 span.testimonials-name {
+  color: #267ebb;
+}
+.search-result-item h4 a {
+  color: #267ebb;
+}
+.top-cart-content:after { 
+  border-bottom: 8px solid #267ebb;
+}
+.goods-data a,
+.checkout-page .checkout-description a {
+  color: #267ebb;
+}
+.product-page .review a {
+  color: #267ebb;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    background: #267ebb;
+    color: #fff;
+}
+.list-view-sorting a {
+  background: #fff;
+  color: #267ebb;
+}
+
+
+
+::-moz-selection {
+  color: #fff;
+  background: #267ebb;
+}
+::selection {
+  color: #fff;
+  background: #267ebb;
+}
+.steps-block ::-moz-selection {
+  color: #267ebb;
+  background: #fff;
+}
+.steps-block ::selection {
+  color: #267ebb;
+  background: #fff;
+}
+
+
+
+.owl-buttons .owl-prev:hover {
+    background-color: #267ebb;
+}
+.owl-buttons .owl-next:hover {
+    background-color: #267ebb;
+}
+.steps-block-red {
+  background: #267ebb;
+}
+.pre-footer .photo-stream img:hover {
+  border-color: #267ebb;
+}
+.pre-footer-light dl.f-twitter dd a {
+  color: #267ebb;
+}
+.pre-footer-light address a {
+  color: #267ebb;
+}
+.testimonials-v1 .left-btn:hover {
+    background-color: #267ebb;
+}
+.testimonials-v1 .right-btn:hover {
+    background-color: #267ebb;
+}
+.blog-tags li i,
+.blog-info li i {
+  color: #267ebb;
+}
+.blog-posts .more,
+.blog-sidebar .more {
+  color: #267ebb;
+}
+.recent-news h3 a {
+  color: #333333;
+}
+.blog-photo-stream li img:hover {
+  border-color: #267ebb;
+}
+.blog-tags li a:hover {
+  color: #fff;
+  background: #267ebb;
+}
+.blog-tags li a:hover:after { 
+  border-left-color: #267ebb;
+}
+.sidebar-categories li > a:hover,
+.sidebar-categories li.active > a,
+.sidebar-categories li.active:hover > a {
+  color: #267ebb;
+}
+.blog-item blockquote {
+  border-color: #267ebb;
+}
+.blog-item h4.media-heading span a {
+    color: #267ebb;
+}
+.front-steps-wrapper .front-step1 {
+  background: #267ebb;
+}
+.pricing-active {
+  border: 3px solid #267ebb;
+  box-shadow: 7px 7px rgba(100, 174, 217, 0.2);
+}
+.pricing:hover {
+  border: 3px solid #267ebb;
+}
+.pricing:hover h4 {
+  color: #267ebb;
+}
+.pricing-head h3 {
+  background: #267ebb;
+}
+.pricing-head-active h4 {
+  color: #267ebb;
+}
+.pricing-content li i {
+  color: #267ebb;
+}
+.top-cart-block .fa-shopping-cart {
+  background: #267ebb;
+}
+.product-item .btn:hover {
+  background: #267ebb;
+}
+.pi-price {
+  color: #267ebb;
+}
+.product-item .add2cart:hover {
+  color: #fff !important;
+  background: #267ebb !important;
+  border-color: #267ebb;
+}
+.goods-page-price strong, 
+.goods-page-total strong,
+.checkout-price strong,
+.checkout-total strong {
+  color: #267ebb;
+}
+.shopping-total strong,
+.checkout-total-block strong {
+  color: #267ebb;
+}
+.compare-item strong {
+  color: #267ebb;
+}
+.sidebar-products .price {
+    color: #267ebb;
+}
+.price-availability-block .price strong {
+  color: #267ebb;
+}
+
+.require {
+  color: #267ebb;
+}
+.content-form-page .form-control:focus {
+  border: solid 1px #267ebb;
+}
+.content-search input:focus {
+  border: solid 1px #267ebb;
+}
+
+.btn-primary {
+  background: #267ebb;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background: #267ebb;
+}
+
+.header-navigation .dropdown-menu > li:first-child {
+    border-top: 2px solid #267ebb;
+}
+.front-steps-wrapper .front-step1:after {
+    border-left: 15px solid #0f5586;
+}
+
+.del-goods:hover,
+.add-goods:hover {
+  background-color: #0f5586;
+}
+
+.sidebar a:hover > .fa-angle-down {
+  background-position: -22px 0;
+}
+.sidebar .collapsed:hover > .fa-angle-down {
+  background-position: -22px -37px;
+}
+
+.top-cart-content {
+  border-top: solid 2px #0f5586;
+}
+
+.front-skills .progress-bar {
+  background: #0f5586;
+}
+
+.service-box-v1:hover {
+  background: #0f5586;
+}
+
+.header .mobi-toggler:hover {
+  background-color: #0f5586;
+  border-color: #0f5586;
+}
+
+@media (max-width: 1024px) {
+  .header .header-navigation li > a:hover,
+  .header .header-navigation li.active > a,
+  .header .header-navigation li.open > a:hover {
+    color: #0f5586 !important;
+  }
+}
+
+.faq-tabbable {
+  border-left: solid 2px #0f5586;
+}
+.faq-tabbable li:hover a,
+.faq-tabbable li.active a{
+  background: #0f5586;
+}
+.faq-tabbable li.active:after {
+  border-left: 6px solid #0f5586;
+}
+
+.mix-filter li:hover, .mix-filter li.active {
+    background: #0f5586;
+    color: #fff;
+}
+.mix-grid .mix .mix-details {
+  background: #0f5586;
+}
+.mix-grid .mix a.mix-link, 
+.mix-grid .mix a.mix-preview {
+  background: #1ab8db;
+}
+.langs-block-others {
+  border-top: solid 2px #0f5586;
+}
+
+.brands .owl-buttons .owl-prev:hover {
+    background-position: 18px -325px;
+}
+.brands .owl-buttons .owl-next:hover {
+    background-position: -249px -325px;
+}
+.header-navigation ul > li.active > a/*,
+.ecommerce .header-navigation ul > li.active > a*/ {
+  border-bottom: 2px solid #0f5586;
+}
