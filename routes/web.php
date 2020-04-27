@@ -14,7 +14,7 @@ use App\Models\Service;
 
 // Route::post('login','Auth\LoginController@login')->name('login');
 // Route::get('logout','Auth\LoginController@logout')->name('logout');
-Route::view('/','pages.home');
+//Route::view('/','pages.home');
 Route::get('/', 'HomeController@index')->name('/');
 Route::get('index','HomeController@master')->name('index');
 Route::get('about.html', 'HomeController@about')->name('about');

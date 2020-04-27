@@ -510,7 +510,12 @@
                             <li><i class="fa fa-comments-o"></i>3 Comments</li>
                         </ul>
                         <div class="text">
-                            <p>{{ $blog->description }}</p>
+                            <p>
+                                @php
+                                $substr = substr($blog->description, 0, 70);
+                                echo $substr.'...';
+                            @endphp
+                            </p>
                         </div>
                         <ul class="list">
                             @foreach ($tags as $tag)
