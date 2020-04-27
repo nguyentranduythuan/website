@@ -11,7 +11,7 @@
 <section class="page-title centered" style="background-image: url({{ URL::asset('assets/images/about/bg.jpg') }});">
     <div class="container">
         <div class="content-box">
-            <div class="title">{{ $tagDetail->name }}</div>
+            <div class="title">{{ $tag->name }}</div>
         </div>
     </div>
 </section>
@@ -21,7 +21,7 @@
 <section class="blog-grid blog-page news-section">
     <div class="container">
         <div class="row">
-            @foreach($blogbyTags as $blog)
+            @foreach($blogs as $blog)
             <div class="col-md-4 col-sm-6 col-xs-12 news-column">
                 <div class="single-item">
                     <div class="single-item-overlay">
@@ -347,13 +347,16 @@
                 </div>
             </div> --}}
         </div>
-        <ul class="link-btn centered">
+        {{-- <ul class="link-btn centered">
             <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
             <li><a href="#" class="active">1</a></li>
             <li><a href="#">2</a></li>
             <li><a href="#">3</a></li>
             <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-        </ul>
+        </ul> --}}
+        {{-- <div class="clearfix">
+            {{  }}
+        </div> --}}
     </div>
 </section>
 <!-- blog grid end -->

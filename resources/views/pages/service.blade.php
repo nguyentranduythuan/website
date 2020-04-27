@@ -35,9 +35,9 @@
                         <h4><a href="{{ url('service-detail/'.$service->slug) }}.html">{{ $service->title }}</a></h4>
                         <div class="text"><p>
                             @php
-                                $a = url('service-detail/'.$service->slug).'.html';
+                                //$a = url('service-detail/'.$service->slug).'.html';
                                 $substr = substr($service->description, 0, 70);
-                                echo $substr.'...<a href="'.$a.'">Xem thêm</a>';
+                                echo $substr.'...';
                             @endphp
                         </p></div>
                     </div>

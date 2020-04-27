@@ -11,7 +11,7 @@
 <section class="page-title centered" style="background-image: url({{ URL::asset('assets/images/about/bg.jpg') }});">
     <div class="container">
         <div class="content-box">
-            <div class="title">{{ $serviceCate->name }}</div>
+            <div class="title">{{ $category->name }}</div>
         </div>
     </div>
 </section>
