@@ -13,14 +13,14 @@ class ProjectCateTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        $name = $faker->sentence;
+        $name = $faker->sentence(1);
         $slug = str_slug($name,"-");
 
-        foreach (range(1,10) as $index) { 
+        for ($i=1; $i <= 5 ; $i++) { 
                 DB::table('project_category')->insert([
                 'name' => $name,
                 'slug' => $slug,
-                'description' => $faker->paragraph,
+                'description' => $faker->paragraph(3),
                 // 'image' => $faker->image('public/uploads',640,480, null, false),
                 // 'detail' => $faker->paragraph,
                 // 'servicecate_id' =>  1,

@@ -24,24 +24,27 @@
             <div class="col-md-3 col-sm-12 col-xs-12 sidebar-side">
                 <div class="sidebar">
                     <ul class="list">
-                        <li><a href="#" class="active">Financial Planning</a></li>
-                        <li><a href="#">Marketing Strategy</a></li>
-                        <li><a href="#">Investment Planning</a></li>
+                        {{-- <li><a href="#" class="active">Financial Planning</a></li> --}}
+                        @foreach ($serviceCates as $cate)
+                            <li><a href="{{ url('category-service/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
+                        @endforeach
+                        
+                        {{-- <li><a href="#">Investment Planning</a></li>
                         <li><a href="#">Taxes Advisory</a></li>
                         <li><a href="#">Trust Investment</a></li>
                         <li><a href="#">Stock Marketing</a></li>
                         <li><a href="#">Wealth Management</a></li>
-                        <li><a href="#">Mutual Funds</a></li>
+                        <li><a href="#">Mutual Funds</a></li> --}}
                     </ul>
-                    <div class="call centered">
+                    {{-- <div class="call centered">
                         <h5>Have Any Questions?</h5>
                         <p>Call Us:</p>
                         <h3><i class="fa fa-phone">0098453987</i></h3>
-                    </div>
-                    <div class="download">
+                    </div> --}}
+                    {{-- <div class="download">
                         <a href="#">Download Brochure PDF <i class="fa fa-download"></i></a>
                         <a href="#">Download Brochure Doc <i class="fa fa-download"></i></a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-md-9 col-sm-12 col-xs-12 content-side">
@@ -58,7 +61,7 @@
                             <p>{{ $serviceDetail->content }}</p>
                         </div>
                     </div>
-                    <div class="content-two">
+                    {{-- <div class="content-two">
                         <div class="row">
                             <div class="col-md-6 col-sm-12 col-xs-12 column">
                                 <div class="strategy-content">
@@ -74,8 +77,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="content-three">
+                    </div> --}}
+                    {{-- <div class="content-three">
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12 column">
                                 <div class="faq-content">
@@ -150,7 +153,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

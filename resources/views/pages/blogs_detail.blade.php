@@ -26,7 +26,7 @@
                     <div class="content-style-one">
                         <div class="single-item">
                             <div class="project-slid">
-                            <div class="img-box"><figure><img src="{{ URL::asset('assets/images/gallery/d1.jpg') }}" alt=""></figure></div>
+                            <div class="img-box"><figure><img src="{{ URL::asset('uploads/blog/'.$blogDetail->image) }}" style="height: 498px;" alt=""></figure></div>
                             <div class="img-box"><figure><img src="{{ URL::asset('assets/images/gallery/d2.jpg') }}" alt=""></figure></div>
                             <div class="img-box"><figure><img src="{{ URL::asset('assets/images/gallery/d3.jpg') }}" alt=""></figure></div>
                         </div>
@@ -34,7 +34,7 @@
                             <h2>{{ $blogDetail->name }}</h2>
                             <ul class="meta">
                                 <li><i class="fa fa-calendar"></i>Jun 15, 2018</li>
-                                <li><i class="fa fa-tag"></i>Planning</li>
+                                <li><i class="fa fa-tag"></i>{{ $blogDetail->blogcate->name }}</li>
                                 <li><i class="fa fa-comments-o"></i>3 Comments</li>
                             </ul>
                             <div class="text">
@@ -49,7 +49,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12 column">
                                 <div class="img-box"><figure><img src="{{ URL::asset('assets/images/news/3.jpg') }}" alt=""></figure></div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 colunn">
+                            {{-- <div class="col-md-6 col-sm-6 col-xs-12 colunn">
                                 <div class="text">
                                     <p>Eque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
                                 </div>
@@ -58,15 +58,18 @@
                                     <li>Morbi fermentum felis nec gravida tempus.</li>
                                     <li>Morbi fermentum felis nec gravida tempus.</li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="post-share-option">
                         <ul class="tags">
                             <li><h5>Tags:</h5></li>
-                            <li><a href="#">Consulting</a> ,</li>
-                            <li><a href="#">Financial</a> ,</li>
-                            <li><a href="#">Business</a></li>
+                            @foreach ($tags as $tag)
+                                <li><a href="{{ url('tag/'.$tag->slug) }}.html">{{ $tag->name }}</a></li>
+                            @endforeach
+                            
+                            {{-- <li><a href="#">Financial</a> ,</li>
+                            <li><a href="#">Business</a></li> --}}
                         </ul>
                         <ul class="post-social">
                             <li><h5>Share:</h5></li>
@@ -136,20 +139,24 @@
                     <div class="sidebar-catagories">
                         <div class="title"><h3>Categories</h3></div>
                         <ul class="list">
-                            <li><a href="#" class="active">Financial Services</a></li>
-                            <li><a href="#">Industrial Goods & Services</a></li>
-                            <li><a href="#">Investment Planning</a></li>
+                            {{-- <li><a href="#" class="active">Financial Services</a></li> --}}
+                            @foreach ($blogCates as $cate)
+                               <li><a href="{{ url('category-blog/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
+                            @endforeach
+                            
+                            {{-- <li><a href="#">Investment Planning</a></li>
                             <li><a href="#">Corporate Interior</a></li>
                             <li><a href="#">Organization</a></li>
-                            <li><a href="#">Customer Insights</a></li>
+                            <li><a href="#">Customer Insights</a></li> --}}
                         </ul>
                     </div>
                     <div class="sidebar-post">
                         <div class="title"><h3>Recent News</h3></div>
+                        @foreach ($blogs as $blog)
                         <div class="single-item">
                             <div class="single-item-overlay">
                                 <div class="img-box">
-                                    <img src="{{ URL::asset('assets/images/news/p1.jpg') }}" alt="">
+                                    <img src="{{ URL::asset('uploads/blog/'.$blog->image) }}" style="width: 90px;" alt="">
                                     <div class="overlay">
                                         <div class="inner-box">
                                             <ul class="content">
@@ -159,10 +166,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <h5><a href="blog-details.html">Finance & legal throughout project.</a></h5>
+                            <h5><a href="blog-details.html">{{ $blog->name }}</a></h5>
                             <div class="text"><i class="fa fa-calendar">16 Aug 2018</i></div>
                         </div>
-                        <div class="single-item">
+                        @endforeach
+                        
+                        {{-- <div class="single-item">
                             <div class="single-item-overlay">
                                 <div class="img-box">
                                     <img src="{{ URL::asset('assets/images/news/p2.jpg') }}" alt="">
@@ -177,8 +186,8 @@
                             </div>
                             <h5><a href="blog-details.html">What Makes A Financial Service</a></h5>
                             <div class="text"><i class="fa fa-calendar">15 Sep 2018</i></div>
-                        </div>
-                        <div class="single-item">
+                        </div> --}}
+                        {{-- <div class="single-item">
                             <div class="single-item-overlay">
                                 <div class="img-box">
                                     <img src="{{ URL::asset('assets/images/news/p3.jpg') }}" alt="">
@@ -193,7 +202,7 @@
                             </div>
                             <h5><a href="blog-details.html">How To Reduce Financial Stress</a></h5>
                             <div class="text"><i class="fa fa-calendar">25 Oct 2018</i></div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="sidebar-tag sidebar-wideget">
                         <div class="title"><h3>Popular Tags</h3></div>

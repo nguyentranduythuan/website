@@ -32,21 +32,26 @@
                     <div class="sidebar-catagories sidebar-wideget">
                         <div class="title"><h3>Categories</h3></div>
                         <ul class="list">
-                            <li><a href="#" class="active">Financial Services</a></li>
-                            <li><a href="#">Industrial Services</a></li>
-                            <li><a href="#">Investment Planning</a></li>
+                            {{-- <li><a href="#" class="active">Financial Services</a></li> --}}
+                            @foreach ($categories as $cate)
+                                <li><a href="{{ url('category-project/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
+                            @endforeach
+                            
+                            {{-- <li><a href="#">Investment Planning</a></li>
                             <li><a href="#">Corporate Interior</a></li>
                             <li><a href="#">Organization</a></li>
-                            <li><a href="#">Customer Insights</a></li>
+                            <li><a href="#">Customer Insights</a></li> --}}
                         </ul>
                     </div>
                     <div class="sidebar-post sidebar-wideget">
                         <div class="title"><h3>Recent News</h3></div>
+
                         <div class="post-area">
+                            @foreach ($blogs as $blog)
                             <div class="single-item">
                                 <div class="single-item-overlay">
                                     <div class="img-box">
-                                        <figure><img src="{{ URL::asset('assets/images/news/p1.jpg') }}" alt=""></figure>
+                                        <figure><img src="{{ asset('uploads/blog/'.$blog->image) }}" alt="" style="width: 90px;"></figure>
                                         <div class="overlay">
                                             <div class="inner-box">
                                                 <ul class="content">
@@ -56,10 +61,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h5><a href="blog-details.html">What Makes A Financial Service</a></h5>
+                                <h5><a href="blog-details.html">{{ $blog->name }}</a></h5>
                                 <div class="text">24 Jun 2018</div>
                             </div>
-                            <div class="single-item">
+                            @endforeach
+                            {{-- <div class="single-item">
                                 <div class="single-item-overlay">
                                     <div class="img-box">
                                         <figure><img src="{{ URL::asset('assets/images/news/p2.jpg') }}" alt=""></figure>
@@ -74,8 +80,8 @@
                                 </div>
                                 <h5><a href="blog-details.html">How To Reduce Financial Stress</a></h5>
                                 <div class="text">14 Aug 2018</div>
-                            </div>
-                            <div class="single-item">
+                            </div> --}}
+                            {{-- <div class="single-item">
                                 <div class="single-item-overlay">
                                     <div class="img-box">
                                         <figure><img src="{{ URL::asset('assets/images/news/p3.jpg') }}" alt=""></figure>
@@ -90,7 +96,7 @@
                                 </div>
                                 <h5><a href="blog-details.html">Finance & legal throughout project.</a></h5>
                                 <div class="text">20 Oct 2018</div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="sidebar-tag sidebar-wideget">
@@ -119,76 +125,80 @@
             <div class="col-md-9 col-sm-12 col-xs-12 content-side">
                 <div class="project-details-content">
                     <div class="project-slid">
-                        <div class="img-box"><figure><img src="{{ URL::asset('assets/images/gallery/d1.jpg') }}" alt=""></figure></div>
+                        <div class="img-box"><figure><img src="{{ asset('uploads/project/'.$projectDetail->image) }}" alt=""></figure></div>
                         <div class="img-box"><figure><img src="{{ URL::asset('assets/images/gallery/d2.jpg') }}" alt=""></figure></div>
-                        <div class="img-box"><figure><img src="{{ URL::asset('assets/images/gallery/d3.jpg') }}" alt=""></figure></div>
+                        {{-- <div class="img-box"><figure><img src="{{ URL::asset('assets/images/gallery/d3.jpg') }}" alt=""></figure></div> --}}
                     </div>
                     <div class="project-analysis">
-                        <div class="sec-title-two">Project growth analysis</div>
-                        <div class="text">
+                        {{-- <div class="sec-title-two">Project growth analysis</div> --}}
+                        {{-- <div class="text">
                             <p>Projects evaluation and monitoring, maintanence compliance regulations and performing establisheed fact that a readers. Project it is a long establisheed fact that a readers will be ut distracted by that readable content of ut sed page when looking at its layout the point of usingl will be ut distracted by that readable.</p>
-                        </div>
-                        <div class="groth">Project growth after our work</div>
-                        <div class="chart-box"><div id="chartbarTwo" style="height: 300px; width: 100%;"></div></div>
+                        </div> --}}
+                        {{-- <div class="groth">Project growth after our work</div> --}}
+                        {{-- <div class="chart-box"><div id="chartbarTwo" style="height: 300px; width: 100%;"></div></div> --}}
                     </div>
                     <div class="project-result">
                         <div class="sec-title-two">{{ $projectDetail->title }}</div>
                         <div class="text">
                             <p>{{ $projectDetail->description }}.</p>
                         </div>
-                        <ul class="list">
+                        {{-- <ul class="list">
                             <li>Lorem ipsum dolor sit amet, adipiscing elitazaa.</li>
                             <li>Lorem ipsum dolor sit amet, consectetur adipiscing elitazaa.</li>
                             <li>Lorem ipsum dolor sit amet, consectetur elitazaa.</li>
                             <li>Lorem ipsum dolor sit,  adipiscing elitazaa.</li>
                             <li>Lorem ipsum dolor sit amet, consectetur adipiscing elitazaa.</li>
-                        </ul>
+                        </ul> --}}
                     </div>
                     <div class="related-project gallery-page">
                         <div class="sec-title-two">Related Projects</div>
                         <div class="row">
+                            @foreach ($projects as $project)
                             <div class="col-md-6 col-sm-6 col-xs-12 filter-item">
                                 <div class="single-item inner-box">
                                     <div class="single-item-overlay">
                                         <div class="img-box">
-                                            <img src="{{ URL::asset('assets/images/gallery/1.jpg') }}" alt="">
+                                            <img src="{{ asset('uploads/project/'.$project->image) }}" alt="">
                                             <div class="overlay">
                                                 <div class="inner-box">
                                                     <ul class="content">
                                                         <li><a href="#"><i class="fa fa-link"></i></a></li>
-                                                        <li><a href="{{ URL::asset('assets/images/gallery/1.jpg') }}" class="lightbox-image"><i class="fa fa-search"></i></a></li>
+                                                        <li><a href="{{ asset('uploads/project/'.$project->image) }}" class="lightbox-image"><i class="fa fa-search"></i></a></li>
                                                     </ul>
                                                 </div> 
                                             </div>
                                         </div>
                                     </div>
                                     <div class="lower-content">
-                                        <h4><a href="#">Business Growth</a></h4>
-                                        <div class="text"><p>Financial Services</p></div>
+                                        <h4><a href="#">{{$project->title}}</a></h4>
+                                        <div class="text"><p>{{ $project->description }}</p></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12 filter-item Consulting">
+                            @endforeach
+                            
+                            {{-- <div class="col-md-6 col-sm-6 col-xs-12 filter-item Consulting">
                                 <div class="single-item inner-box">
                                     <div class="single-item-overlay">
                                         <div class="img-box">
-                                            <img src="{{ URL::asset('assets/images/gallery/2.jpg') }}" alt="">
+                                            <img src="{{ asset('uploads/project/'.$item->image) }}" alt="">
                                             <div class="overlay">
                                                 <div class="inner-box">
                                                     <ul class="content">
                                                         <li><a href="#"><i class="fa fa-link"></i></a></li>
-                                                        <li><a href="{{ URL::asset('assets/images/gallery/2.jpg') }}" class="lightbox-image"><i class="fa fa-search"></i></a></li>
+                                                        <li><a href="{{ asset('uploads/project/'.$item->image) }}" class="lightbox-image"><i class="fa fa-search"></i></a></li>
                                                     </ul>
                                                 </div> 
                                             </div>
                                         </div>
                                     </div>
                                     <div class="lower-content">
-                                        <h4><a href="#">The Next Big Thing</a></h4>
-                                        <div class="text"><p>Financial Services</p></div>
+                                        <h4><a href="#">{{ $item->name }}</a></h4>
+                                        <div class="text"><p>{{ $item->description }}</p></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
+                            
                         </div>
                     </div>
                 </div>

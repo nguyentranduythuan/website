@@ -13,10 +13,10 @@ class TagTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        $name = $faker->sentence;
+        $name = $faker->sentence(1);
         $slug = str_slug($name,"-");
 
-        foreach (range(1,10) as $index) { 
+        for ($i=1; $i <= 4 ; $i++) { 
                 DB::table('tag')->insert([
                 'name' => $name,
                 'slug' => $slug,

@@ -10,19 +10,26 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Models\Service;
 
-Route::get('/', 'HomeController@index')->name('index');
+// Route::post('login','Auth\LoginController@login')->name('login');
+// Route::get('logout','Auth\LoginController@logout')->name('logout');
+Route::view('/','pages.home');
+Route::get('/', 'HomeController@index')->name('/');
+Route::get('index','HomeController@master')->name('index');
 Route::get('about.html', 'HomeController@about')->name('about');
-Route::get('service.html', 'HomeController@service')->name('service');
-Route::get('service-detail/{id}', 'HomeController@service_detail')->name('service-detail');
-Route::get('projects.html', 'HomeController@projects')->name('projects');
-Route::get('category-project/{slug}','HomeController@getProjectCate');
+Route::get('service', 'HomeController@service')->name('service');
+Route::get('category-service/{slug}.html','HomeController@serviceByCate')->name('serbyCate');
+Route::get('service-detail/{id}.html', 'HomeController@service_detail')->name('service-detail');
+Route::get('projects', 'HomeController@projects')->name('projects');
+Route::get('category-project/{slug}.html','HomeController@getProjectCate');
 // Route::get('projects/{slug}', 'HomeController@project')->name('projects');
 //Route::get('project/{id}','HomeController@getProject');
-Route::get('project-detail/{slug}', 'HomeController@projects_detail')->name('projects');
-Route::get('blog.html', 'HomeController@blogs')->name('blog');
-Route::get('tag/{slug}','HomeController@blogByTag');
-Route::get('blog-details/{slug}', 'HomeController@blogs_detail')->name('blog');
+Route::get('project-detail/{slug}.html', 'HomeController@projects_detail')->name('projects');
+Route::get('tin-tuc', 'HomeController@blogs')->name('blog');
+Route::get('category-blog/{slug}.html','HomeController@blogByCate');
+Route::get('tag/{slug}.html','HomeController@blogByTag');
+Route::get('blog-details/{slug}.html', 'HomeController@blogs_detail')->name('blog');
 Route::get('contact.html', 'HomeController@contact')->name('contact');
 Route::post('contact.html', 'HomeController@postContact')->name('postData');
 
@@ -80,3 +87,15 @@ Route::group(['prefix' => 'client', 'middleware' => ['web'], 'namespace' => 'Cli
 
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

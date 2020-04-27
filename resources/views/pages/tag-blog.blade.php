@@ -11,7 +11,7 @@
 <section class="page-title centered" style="background-image: url({{ URL::asset('assets/images/about/bg.jpg') }});">
     <div class="container">
         <div class="content-box">
-            <div class="title">Blog Grid</div>
+            <div class="title">{{ $tagDetail->name }}</div>
         </div>
     </div>
 </section>

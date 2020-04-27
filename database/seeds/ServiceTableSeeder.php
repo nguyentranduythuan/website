@@ -17,14 +17,14 @@ class ServiceTableSeeder extends Seeder
         $title = $faker->sentence;
         $slug = str_slug($title,"-");
 
-        foreach (range(1,50) as $index) { 
+        for ($i = 1; $i <= 10; $i++) { 
                 DB::table('service')->insert([
                 'title' => $title,
                 'slug' => $slug,
-                'description' => $faker->paragraph,
+                'description' => $faker->paragraph(3),
                 'image' => $faker->image('public/uploads',640,480, null, false),
                 'detail' => $faker->paragraph,
-                'servicecate_id' =>  1,
+                // 'servicecate_id' => 1,
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ]);   

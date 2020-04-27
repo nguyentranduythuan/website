@@ -13,14 +13,14 @@ class ServiceCateTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        $name = $faker->sentence;
+        $name = $faker->sentence(2);
         $slug = str_slug($name,"-");
 
         for ($i=1; $i <= 10 ; $i++) { 
                 DB::table('service_category')->insert([
                 'name' => $name,
                 'slug' => $slug,
-                'description' => $faker->paragraph,
+                'description' => $faker->paragraph(3),
                 // 'image' => $faker->image('public/uploads',640,480, null, false),
                 // 'detail' => $faker->paragraph,
                 //'servicecate_id' =>  1,

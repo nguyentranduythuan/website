@@ -77,9 +77,11 @@
                             <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                 <textarea placeholder="Message" name="message" required=""></textarea>
                             </div>
-                            <div id="success"></div>
+                            
                             <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                <button type="submit" class="btn-one" data-loading-text="Please wait..." id="aaa">Send Message</div>
+                                <input type="submit" class="btn-one" data-loading-text="Your message is sent" value="Send Message" id="btn">
+                                {{-- <button type="button" class="btn btn-primary btn-lg " id="load1" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing Order">Send Message</button> --}}
+                            </div>
                             </div>
                         </div>
                     </form>
@@ -116,13 +118,42 @@
 {{-- <script src="/js/jqBootstrapValidation.js"></script> --}}
 <script src="https://code.jquery.com/jquery-3.4.1.min.js
 " type="text/javascript" charset="utf-8" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#default-form').submit(function(e){
-            var route = $('default-form').data('route');
-            var form_data = $(this);
-            $('.alert').remove();
-            $.ajax({
+
+    // $('#default-form').on('submit', function(e){
+    //     var route = $('default-form').data('route');
+    //     var form_data = $(this);
+    //     // bắt đầu chạy ajax - tắt button
+    //     $(":submit").attr("disabled", true);
+    //     $.ajax({
+    //                 url: route,
+    //                 method: 'POST',
+    //                 data: form_data.serialize()           
+    //     }).always(function(data){
+    //         // chạy xong ajax - mở button
+    //         $(":submit").removeAttr("disabled");
+    //         if('code' in data) {
+    //             var self = $(this),
+    //             button = self.find('input[type="submit"], button'),
+    //             submitValue = button.data('loading-text');
+    //             button.attr('disabled', 'disabled').val(submitValue) ? submitValue : 'Please wait...';
+    //         }
+    //     });
+    //     e.preventDefault();     
+    // });
+
+    $('#default-form').on('submit', function(e){
+            var self = $(this),
+            button = self.find('input[type="submit"], button'),
+            submitValue = button.data('loading-text');
+            button.attr('disabled','disabled').val(submitValue) ? submitValue : 'Please wait...';
+            setTimeout(function(){
+                button.removeAttr('disabled').val(submitValue);
+            }, 8000);
+         var route = $('default-form').data('route');
+         var form_data = $(this);
+        $.ajax({
                     url: route,
                     method: 'POST',
                     data: form_data.serialize(),
@@ -133,10 +164,9 @@
                         }
                     }
                 });
-
-            e.preventDefault();
-        });    
+               e.preventDefault();     
     });
+
 </script>
 @endpush
 

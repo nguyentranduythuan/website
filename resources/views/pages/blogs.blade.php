@@ -30,14 +30,14 @@
                             <div class="overlay">
                                 <div class="inner-box">
                                     <ul class="content">
-                                        <li><a href="{{ url('/blog-details.html') }}"><i class="fa fa-link"></i></a></li>
+                                        <li><a href="{{ url('/blog-details/'.$blog->slug) }}.html"><i class="fa fa-link"></i></a></li>
                                     </ul>
                                 </div> 
                             </div>
                         </div>
                     </div>
                     <div class="lower-content">
-                        <h3><a href="{{ url('/blog-details/'.$blog->slug) }}">{{ $blog->name }}</a></h3>
+                        <h3><a href="{{ url('/blog-details/'.$blog->slug) }}.html">{{ $blog->name }}</a></h3>
                         <ul class="meta">
                             <li><i class="fa fa-calendar"></i>Jan 10, 2018</li>
                             
@@ -47,21 +47,27 @@
                             <li><i class="fa fa-comments-o"></i>3 Comments</li>
                         </ul>
                         <div class="text">
-                            <p>{{ $blog->description }}</p>
+                            <p>
+                                @php
+                                    $substr = substr($blog->description, 0, 100);
+                                    echo $substr.'...';
+                                @endphp
+                            </p>
                         </div>
-                         @foreach ($tags as $tag)
+                         
                         <ul class="list">
-                           
+                           @foreach ($tags as $tag)
                             <li><a href="{{ url('tag/'.$tag->slug) }}">{{ $tag->name }}</a></li>
-                            {{-- <li><a href="#">Marketing</a></li> --}}
-                            {{-- <li><a href="#">News</a></li> --}}
-                            {{-- <li><a href="#">Sports</a></li> --}}
-                             
+                            {{-- <li><a href="#">Business</a></li>
+                            <li><a href="#">Marketing</a></li>
+                            <li><a href="#">News</a></li>
+                            <li><a href="#">Sports</a></li> --}}
+                             @endforeach
                         </ul>
-                        @endforeach
+                        
                         
                         <div class="button">
-                            <a href="{{ url('/blog-details/'.$blog->slug) }}" class="btn-one">Read More</a>
+                            <a href="{{ url('/blog-details/'.$blog->slug) }}.html" class="btn-one">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -356,13 +362,16 @@
                 </div>
             </div> --}}
         </div>
-        <ul class="link-btn centered">
+        {{-- <ul class="link-btn centered">
             <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
             <li><a href="#" class="active">1</a></li>
             <li><a href="#">2</a></li>
             <li><a href="#">3</a></li>
             <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-        </ul>
+        </ul> --}}
+        <div class="clearfix">
+            {{ $blogs->links() }}
+        </div>
     </div>
 </section>
 <!-- blog grid end -->

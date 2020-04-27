@@ -76,9 +76,9 @@
                                         <ul class="navigation clearfix">
                                             <li class="{{ \Request::route()->getName() == 'index' ? 'current' : '' }}"><a href="{{ url('/') }}">Trang chủ</a></li>
                                             <li class="{{ \Request::route()->getName() == 'about' ? 'current' : '' }}"><a href="{{ url('/about.html') }}">Giới thiệu</a></li>
-                                            <li class="{{ \Request::route()->getName() == 'service' ? 'current' : '' }}"><a href="{{ url('/service.html') }}">Dịch vụ</a></li>
-                                            <li class="{{ \Request::route()->getName() == 'projects' ? 'current' : '' }}"><a href="{{ url('/projects.html') }}">Dự án</a></li>
-                                            <li class="{{ \Request::route()->getName() == 'blog' ? 'current' : '' }}"><a href="{{ url('/blog.html') }}">Tin tức</a></li>
+                                            <li class="{{ \Request::route()->getName() == 'service' ? 'current' : '' }}"><a href="{{ url('/service') }}">Dịch vụ</a></li>
+                                            <li class="{{ \Request::route()->getName() == 'projects' ? 'current' : '' }}"><a href="{{ url('/projects') }}">Dự án</a></li>
+                                            <li class="{{ \Request::route()->getName() == 'blog' ? 'current' : '' }}"><a href="{{ url('tin-tuc') }}">Tin tức</a></li>
                                             <li class="{{ \Request::route()->getName() == 'contact' ? 'current' : '' }}"><a href="{{ url('/contact.html') }}">Liên Hệ</a></li>
                                         </ul>
                                         <!-- mobile menu -->
@@ -87,7 +87,7 @@
                                             <li class="{{ \Request::route()->getName() == 'about' ? 'current' : '' }}"><a href="{{ url('/about.html') }}">Giới thiệu</a></li>
                                             <li class="{{ \Request::route()->getName() == 'service' ? 'current' : '' }}"><a href="{{ url('/service.html') }}">Dịch vụ</a></li>
                                             <li class="{{ \Request::route()->getName() == 'projects' ? 'current' : '' }}"><a href="{{ url('/projects.html') }}">Dự án</a></li>
-                                            <li class="{{ \Request::route()->getName() == 'blog' ? 'current' : '' }}"><a href="{{ url('/blog.html') }}">Tin tức</a></li>
+                                            <li class="{{ \Request::route()->getName() == 'blog' ? 'current' : '' }}"><a href="{{ url('/tin-tuc.html') }}">Tin tức</a></li>
                                             <li class="{{ \Request::route()->getName() == 'contact' ? 'current' : '' }}"><a href="{{ url('/contact.html') }}">c</a></li>
                                         </ul>
                                     </div>
@@ -142,14 +142,16 @@
                                 <h4>Dịch vụ</h4>
                             </div>
                             <ul class="list">
-                                <li><a href="#">Startups Help</a></li>
-                                <li><a href="#">Customer Insights</a></li>
+                                @foreach($serviceCates as $cate)
+                                <li><a href="{{ url('category-service/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
+                                @endforeach
+                               {{--  <li><a href="#">Customer Insights</a></li>
                                 <li><a href="#">Advanced Analytics</a></li>
                                 <li><a href="#">Export Promotions</a></li>
                                 <li><a href="#">Business Photography</a></li>
                                 <li><a href="#">Brand Development</a></li>
                                 <li><a href="#">Public Relations</a></li>
-                                <li><a href="#">User Infographics</a></li>
+                                <li><a href="#">User Infographics</a></li> --}}
                             </ul>
                         </div>
                     </div>
@@ -158,6 +160,7 @@
                             <div class="footer-title">
                                 <h4>Tin mới</h4>
                             </div>
+                            @foreach($blogs as $blog)
                             <div class="single-item">
                                 <div class="single-item-overlay">
                                     <div class="img-box">
@@ -171,10 +174,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h6><a href="blog-details.html">What Makes A Financial Website</a></h6>
+                                <h6><a href="{{ url('blog-details',$blog->slug) }}.html">{{ $blog->name }}</a></h6>
                                 <div class="text">24 Jun 2018</div>
                             </div>
-                            <div class="single-item">
+                            @endforeach
+                            {{-- <div class="single-item">
                                 <div class="single-item-overlay">
                                     <div class="img-box">
                                         <figure><img src="{{ URL::asset('assets/images/footer/2.jpg') }}" alt=""></figure>
@@ -189,8 +193,8 @@
                                 </div>
                                 <h6><a href="blog-details.html">How To Reduce Financial Stress</a></h6>
                                 <div class="text">25 Aug 2018</div>
-                            </div>
-                            <div class="single-item">
+                            </div> --}}
+                            {{-- <div class="single-item">
                                 <div class="single-item-overlay">
                                     <div class="img-box">
                                         <figure><img src="{{ URL::asset('assets/images/footer/3.jpg') }}" alt=""></figure>
@@ -205,7 +209,7 @@
                                 </div>
                                 <h6><a href="blog-details.html">What Makes A Financial Service</a></h6>
                                 <div class="text">10 Sep 2018</div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 footer-column">

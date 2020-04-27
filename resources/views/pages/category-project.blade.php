@@ -11,7 +11,7 @@
 <section class="page-title centered" style="background-image: url({{ URL::asset('assets/images/about/bg.jpg') }});">
     <div class="container">
         <div class="content-box">
-            <div class="title">DỰ ÁN</div>
+            <div class="title">{{ $cateDetail->name }}</div>
         </div>
     </div>
 </section>
@@ -29,7 +29,7 @@
                             <figcaption>
                                 <div class="box">
                                     <div class="content">
-                                        <a href="{{ url('project-detail/'.$detail->slug) }}"><i class="fa fa-link"></i></a>
+                                        <a href="{{ url('project-detail/'.$detail->slug) }}.html"><i class="fa fa-link"></i></a>
                                         <a href="{{ asset('uploads/project/'.$detail->image) }}" class="lightbox-image"><i class="fa fa-search"></i></a>
                                     </div>
                                 </div>

@@ -27,16 +27,16 @@
                     <figure class="img-box">
                         <img src="{{ asset('uploads/'.$service->image) }}" alt="">
                         <div class="overlay">
-                            <a href="{{ url('service-detail/'.$service->slug) }}" class="btn-one">Xem thêm</a>
+                            <a href="{{ url('service-detail/'.$service->slug) }}.html" class="btn-one">Xem thêm</a>
                         </div>
                     </figure>
                     <div class="lower-content">
                         <div class="icon-box"><i class="flaticon-growth"></i></div>
-                        <h4><a href="{{ url('service-detail/'.$service->slug) }}">{{ $service->title }}</a></h4>
+                        <h4><a href="{{ url('service-detail/'.$service->slug) }}.html">{{ $service->title }}</a></h4>
                         <div class="text"><p>
                             @php
-                                $a = url('service-detail/'.$service->slug);
-                                $substr = substr($service->description, 0, 30);
+                                $a = url('service-detail/'.$service->slug).'.html';
+                                $substr = substr($service->description, 0, 70);
                                 echo $substr.'...<a href="'.$a.'">Xem thêm</a>';
                             @endphp
                         </p></div>
@@ -169,6 +169,9 @@
             <div class="clearfix">
                     {{ $services->links() }}
             </div>
+            {{-- <div class="clearfix">
+                
+            </div> --}}
         </div>
     </div>
 

@@ -53,7 +53,7 @@
 
 
 <!-- fact-counter section -->
-<div class="fact-counter sec-pad centered">
+{{-- <div class="fact-counter sec-pad centered">
     <div class="container">
         <div class="row">
             <div class="col-md-2 col-sm-6 col-xs-12 counter-colmun">
@@ -106,12 +106,12 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- fact-counter section end -->
 
 
 <!-- faq & Strategy development -->
-<section class="faq-section strategy-section sec-pad">
+{{-- <section class="faq-section strategy-section sec-pad">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12 col-xs-12 faq-column">
@@ -170,7 +170,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- faq & Strategy development end -->
 
 
@@ -178,48 +178,48 @@
 <section class="choose-us">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
+            {{-- <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
                 <div class="single-item">
                     <div class="icon-box"><i class="flaticon-clock"></i></div>
                     <h4>40 years of Experience</h4>
                     <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet.</p></div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
+            </div> --}}
+            {{-- <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
                 <div class="single-item">
                     <div class="icon-box"><i class="flaticon-award"></i></div>
                     <h4>First Award for Best Service</h4>
                     <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet.</p></div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
+            </div> --}}
+            {{-- <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
                 <div class="single-item">
                     <div class="icon-box"><i class="flaticon-solution"></i></div>
                     <h4>Global Solutions Service</h4>
                     <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet.</p></div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
+            </div> --}}
+            {{-- <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
                 <div class="single-item">
                     <div class="icon-box"><i class="flaticon-meeting"></i></div>
                     <h4>Business Opportunities</h4>
                     <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet.</p></div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
+            </div> --}}
+            {{-- <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
                 <div class="single-item">
                     <div class="icon-box"><i class="flaticon-business-partnership"></i></div>
                     <h4>Exclusive Partnerships</h4>
                     <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet.</p></div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
+            </div> --}}
+            {{-- <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
                 <div class="single-item">
                     <div class="icon-box"><i class="flaticon-support"></i></div>
                     <h4>24/7 Online Support</h4>
                     <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet.</p></div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

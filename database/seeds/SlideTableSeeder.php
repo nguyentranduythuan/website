@@ -13,10 +13,10 @@ class SlideTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        foreach (range(1,10) as $index) { 
+        for ($i=1; $i <= 4 ; $i++) { 
                 DB::table('slide')->insert([
-                'name' => $faker->sentence,
-                'description' => $faker->paragraph,
+                'name' => $faker->sentence(2),
+                'description' => $faker->paragraph(3),
                 'image' => $faker->image('public/uploads/slide',640,480, null, false),
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
