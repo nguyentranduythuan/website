@@ -108,4 +108,14 @@ class HomeController extends Controller
         $blogDetail = Blog::where('slug',$slug)->first();
         return view('pages.blogs_detail',['serviceCates'=>$serviceCates,'blogDetail'=>$blogDetail,'tags'=>$tags,'blogCates'=>$blogCates,'blogs'=>$blogs]);
     }
+
+    public function post(Request $request){
+        $request->all();
+    }
+
+    public function contact(){
+        $serviceCates = ServiceCategory::all();
+        $blogs = Blog::inRandomOrder()->take(3)->get();
+        return view('pages.contact',['serviceCates'=>$serviceCates,'blogs'=>$blogs]);
+    }
 }
