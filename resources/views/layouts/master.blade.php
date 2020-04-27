@@ -32,6 +32,9 @@
                         <ul class="top-bar">
                             <li><i class="fa fa-phone"></i>Phone: 0944.22.3879</li>
                             <li><i class="fa fa-envelope"></i>hotro@wemarketing.tech</li>
+                            <a href="#" title=""><li><i class="fa fa-user">username</i></li></a>
+                            <a href="#" title=""><li><i class="fa fa-sign-in">Sign in</i></li></a>
+                            <a href="#" title=""><li><i class="fa fa-sign-out">Sign in</i></li></a>
                         </ul>
                         @if(1==2)
                         <div class="language-switcher">
