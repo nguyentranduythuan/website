@@ -1,0 +1,1 @@
+Hi <strong>{{ $firstname }}</strong>, <p>{{ $subject }}</p>

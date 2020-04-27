@@ -12,6 +12,7 @@ use App\Models\ServiceCategory;
 use App\Models\About;
 use App\Models\ProjectCategory;
 use App\Models\BlogCategory;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -109,8 +110,20 @@ class HomeController extends Controller
         return view('pages.blogs_detail',['serviceCates'=>$serviceCates,'blogDetail'=>$blogDetail,'tags'=>$tags,'blogCates'=>$blogCates,'blogs'=>$blogs]);
     }
 
-    public function post(Request $request){
-        $request->all();
+    public function postContact(Request $request){
+        
+        $arr = array(
+            'firstname' => $request->firstname,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'subject' => $request->subject,
+            'message' => $request->message
+        );
+        Mail::send('pages.mail',$arr,function($message) use ($arr){
+            $message->from($arr['email']);
+            $message->to('nguyentranduythuan@gmail.com');
+            $message->subject($arr['subject']);
+        });
     }
 
     public function contact(){
