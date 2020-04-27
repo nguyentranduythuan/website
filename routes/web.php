@@ -22,7 +22,7 @@ Route::get('service', 'HomeController@service')->name('service');
 Route::get('category-service/{slug}.html','HomeController@serviceByCate')->name('serbyCate');
 Route::get('service-detail/{id}.html', 'HomeController@service_detail')->name('service-detail');
 Route::get('projects', 'HomeController@projects')->name('projects');
-Route::get('category-project/{slug}.html','HomeController@getProjectCate');
+Route::get('category-project/{slug}.html','HomeController@projectByCate');
 // Route::get('projects/{slug}', 'HomeController@project')->name('projects');
 //Route::get('project/{id}','HomeController@getProject');
 Route::get('project-detail/{slug}.html', 'HomeController@projects_detail')->name('projects');

@@ -11,7 +11,7 @@
 <section class="page-title centered" style="background-image: url({{ URL::asset('assets/images/about/bg.jpg') }});">
     <div class="container">
         <div class="content-box">
-            <div class="title">{{ $cateDetail->name }}</div>
+            <div class="title">{{ $cate->name }}</div>
         </div>
     </div>
 </section>
@@ -21,7 +21,7 @@
 <section class="our-service service-page">
     <div class="container">
         <div class="row" id="products">
-            @foreach ($cateByProject as $detail)
+            @foreach ($projects as $detail)
             <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="inner-box">
                         <figure class="imghvr-strip-vert-bottom-right">

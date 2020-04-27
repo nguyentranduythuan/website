@@ -62,6 +62,14 @@ class HomeController extends Controller
         return view('pages.projects',['serviceCates'=>$serviceCates,'blogs'=>$blogs,'projects'=>$projects,'projectcates'=>$projectcates]);
     }
 
+    public function projectByCate($slug){
+        $serviceCates = ServiceCategory::all();
+        $blogs = Blog::inRandomOrder()->take(3)->get();
+        $cate = ProjectCategory::where('slug',$slug)->first();
+        $projects = Project::where('project-category_id',$cate->id)->get();
+        return view('pages.category-project',['serviceCates'=>$serviceCates,'blogs'=>$blogs,'cate'=>$cate,'projects'=>$projects]);
+    }
+
     public function projects_detail($slug){
         $serviceCates = ServiceCategory::all();
         $blogs = Blog::inRandomOrder()->take(3)->get();
@@ -89,7 +97,7 @@ class HomeController extends Controller
         $serviceCates = ServiceCategory::all();
         $blogCate = BlogCategory::where('slug',$slug)->first();
         $blogs = Blog::where('blogcategory_id',$blogCate->id)->get();
-        return view('category-blog',['serviceCates'=>$serviceCates,'blogCate'=>$blogCate,'blogs'=>$blogs]);
+        return view('pages.category-blog',['serviceCates'=>$serviceCates,'blogCate'=>$blogCate,'blogs'=>$blogs]);
     }
 
     public function blogs_detail($slug){
