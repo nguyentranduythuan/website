@@ -13,7 +13,7 @@ use App\Models\About;
 use App\Models\ProjectCategory;
 use App\Models\BlogCategory;
 use Mail;
-use User;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -171,7 +171,7 @@ class HomeController extends Controller
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = hash($request->password);
+        $user->password = bcrypt($request->password);
         $user->save();
         return redirect()->route('postRegister')->with('thongbao','Bạn đã đăng kí thành công');
     }
