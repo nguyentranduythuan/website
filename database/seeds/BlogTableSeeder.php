@@ -20,11 +20,11 @@ class BlogTableSeeder extends Seeder
                 DB::table('blog')->insert([
                 'name' => $name,
                 'slug' => $slug,
-                'description' => $faker->paragraph(3),
+                'description' => $faker->sentence(4),
                 'image' => $faker->image('public/uploads/blog',640,480, null, false),
                 'content' => $faker->paragraph,
-                //'blogcategory_id' =>  $faker->unique()->randomDigit,
-                //'blogtag_id' =>  $faker->unique()->randomDigit,
+                //'blogcategory_id' =>  $faker->unique()->randomNumber(4),
+                //'blogtag_id' =>  $faker->unique()->randomNumber(4),
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ]);   

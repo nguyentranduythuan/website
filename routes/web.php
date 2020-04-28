@@ -32,6 +32,11 @@ Route::get('tag/{slug}.html','HomeController@blogByTag');
 Route::get('blog-details/{slug}.html', 'HomeController@blogs_detail')->name('blog');
 Route::get('contact.html', 'HomeController@contact')->name('contact');
 Route::post('contact.html', 'HomeController@postContact')->name('postData');
+Route::get('dang-nhap','HomeController@login')->name('dangnhap');
+Route::post('dang-nhap','HomeController@postLogin')->name('postLogin');
+Route::get('dang-xuat','HomeController@dangxuat')->name('dangxuat');
+Route::get('dang-ki','HomeController@register')->name('dangki');
+Route::post('dang-ki','HomeController@postRegister')->name('postRegister');
 
 Route::get('export', 'HomeController@export')->name('export');
 Route::get('import_export', 'HomeController@import_export');

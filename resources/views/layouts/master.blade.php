@@ -32,9 +32,13 @@
                         <ul class="top-bar">
                             <li><i class="fa fa-phone"></i>Phone: 0944.22.3879</li>
                             <li><i class="fa fa-envelope"></i>hotro@wemarketing.tech</li>
-                            <a href="#" title=""><li><i class="fa fa-user">username</i></li></a>
-                            <a href="#" title=""><li><i class="fa fa-sign-in">Sign in</i></li></a>
-                            <a href="#" title=""><li><i class="fa fa-sign-out">Sign out</i></li></a>
+                            @if(Auth::check())
+                            <a href="#" title=""><li><i class="fa fa-user">{{ Auth::user()->name }}</i></li></a>
+                            <a href="{{ route('dangxuat') }}" title=""><li><i class="fa fa-sign-in">Đăng xuất</i></li></a>
+                            @else
+                            <a href="{{ route('dangki') }}" title=""><li><i class="fa fa-sign-in">Đăng kí</i></li></a>
+                            <a href="{{ route('dangnhap') }}" title=""><li><i class="fa fa-sign-out">Đăng nhập</i></li></a>
+                            @endif
                         </ul>
                         @if(1==2)
                         <div class="language-switcher">

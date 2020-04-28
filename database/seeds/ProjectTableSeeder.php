@@ -23,7 +23,7 @@ class ProjectTableSeeder extends Seeder
                 'description' => $faker->sentence,
                 'image' => $faker->image('public/uploads/project',640,480, null, false),
                 'content' => $faker->paragraph,
-                // 'project-category_id' => $faker->randomDigit(),
+                //'project-category_id' => $faker->unique()->randomDigit(),
                 'created_at' => \Carbon\Carbon::now(),
                 'updated_at' => \Carbon\Carbon::now(),
             ]);   

@@ -20,7 +20,7 @@ class ServiceCateTableSeeder extends Seeder
                 DB::table('service_category')->insert([
                 'name' => $name,
                 'slug' => $slug,
-                'description' => $faker->paragraph(3),
+                'description' => $faker->sentence(4),
                 // 'image' => $faker->image('public/uploads',640,480, null, false),
                 // 'detail' => $faker->paragraph,
                 //'servicecate_id' =>  1,

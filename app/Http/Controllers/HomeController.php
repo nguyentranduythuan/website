@@ -13,9 +13,12 @@ use App\Models\About;
 use App\Models\ProjectCategory;
 use App\Models\BlogCategory;
 use Mail;
+use User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    
     public function index(){
         $serviceCates = ServiceCategory::all();
         $slides = Slide::all();
@@ -130,5 +133,46 @@ class HomeController extends Controller
         $serviceCates = ServiceCategory::all();
         $blogs = Blog::inRandomOrder()->take(3)->get();
         return view('pages.contact',['serviceCates'=>$serviceCates,'blogs'=>$blogs]);
+    }
+
+    public function login(){
+        $serviceCates = ServiceCategory::all();
+        $blogs = Blog::inRandomOrder()->take(3)->get();
+        return view('pages.login',['serviceCates'=>$serviceCates,'blogs'=>$blogs]);
+    }
+
+    public function postLogin(Request $request){
+        if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
+            return redirect()->route('/');
+        } else {
+            return redirect()->route('postLogin')->with('thongbao','Đăng nhập không thành công');
+        }
+    }
+
+    public function dangxuat()
+    {
+        Auth::logout();
+        return redirect()->route('/');
+    }
+
+    public function register(){
+        $serviceCates = ServiceCategory::all();
+        $blogs = Blog::inRandomOrder()->take(3)->get();
+        return view('pages.register',['serviceCates'=>$serviceCates,'blogs'=>$blogs]);
+    }
+
+    public function postRegister(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'password2' => 'required|same:password'
+        ]);
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = hash($request->password);
+        $user->save();
+        return redirect()->route('postRegister')->with('thongbao','Bạn đã đăng kí thành công');
     }
 }
