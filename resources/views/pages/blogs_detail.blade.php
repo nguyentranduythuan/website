@@ -105,17 +105,18 @@
                     <div class="comment-box">
                         <div class="title"><h3>Your Comment</h3></div>
                         <div class="form">
-                            <form action="contact.html" method="post">
+                            <form action="{{ route('comment.store',$blogDetail->id) }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                         <input type="text" name="name" value="" placeholder="Your Name" required="">
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                    {{-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                         <input type="email" name="email" value="" placeholder="Your Email" required="">
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                    </div> --}}
+                                    {{-- <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                         <input type="text" name="subject" value="" placeholder="Subject" required="">
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                         <textarea placeholder="Message" name="message" required=""></textarea>
                                     </div>

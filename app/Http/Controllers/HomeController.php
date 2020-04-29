@@ -12,6 +12,7 @@ use App\Models\ServiceCategory;
 use App\Models\About;
 use App\Models\ProjectCategory;
 use App\Models\BlogCategory;
+use App\Models\Comment;
 use Mail;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -174,5 +175,19 @@ class HomeController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
         return redirect()->route('postRegister')->with('thongbao','Bạn đã đăng kí thành công');
+    }
+
+    public function comment(Request $request,$id)
+    {
+        $blog = Blog::find($id);
+        $comment = new Comment;
+        //$comment->parent_id = null;
+        $comment->name = $request->name;
+        $comment->content = $request->message;
+        $comment->blog()->associate($blog);
+        $comment->id_user = Auth::user()->id;
+        $comment->save();
+
+        return redirect()->route('blog_details',[$blog->slug])->with('message','Bạn đã đăng bình luận thành công');
     }
 }

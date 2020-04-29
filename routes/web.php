@@ -29,7 +29,7 @@ Route::get('project-detail/{slug}.html', 'HomeController@projects_detail')->name
 Route::get('tin-tuc', 'HomeController@blogs')->name('blog');
 Route::get('category-blog/{slug}.html','HomeController@blogByCate');
 Route::get('tag/{slug}.html','HomeController@blogByTag');
-Route::get('blog-details/{slug}.html', 'HomeController@blogs_detail')->name('blog');
+Route::get('blog-details/{slug}.html', 'HomeController@blogs_detail')->name('blog_details');
 Route::get('contact.html', 'HomeController@contact')->name('contact');
 Route::post('contact.html', 'HomeController@postContact')->name('postData');
 Route::get('dang-nhap','HomeController@login')->name('dangnhap');
@@ -37,6 +37,8 @@ Route::post('dang-nhap','HomeController@postLogin')->name('postLogin');
 Route::get('dang-xuat','HomeController@dangxuat')->name('dangxuat');
 Route::get('dang-ki','HomeController@register')->name('dangki');
 Route::post('dang-ki','HomeController@postRegister')->name('postRegister');
+Route::get('comment/{id}','HomeController@comment')->name('comment.create');
+Route::post('comment/{id}',['uses' => 'HomeController@comment','as'=>'comment.store']);
 
 Route::get('export', 'HomeController@export')->name('export');
 Route::get('import_export', 'HomeController@import_export');
