@@ -48,7 +48,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <a href="{{ url('login/facebook') }}" title=""><li><i class="fa fa-sign-in">Đăng nhập</i></li></a>
+            </div>
         </div>
         <!-- end slide -->
 </div>

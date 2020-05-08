@@ -33,7 +33,12 @@
                         <div class="lower-content">
                             <h2>{{ $blogDetail->name }}</h2>
                             <ul class="meta">
-                                <li><i class="fa fa-calendar"></i>Jun 15, 2018</li>
+                                <li><i class="fa fa-calendar"></i>
+                                    @php
+                                    $date = date_create($blogDetail->created_at);
+                                    echo date_format($date,'M d Y');
+                                @endphp
+                                </li>
                                 <li><i class="fa fa-tag"></i>{{ $blogDetail->blogcate->name }}</li>
                                 <li><i class="fa fa-comments-o"></i>3 Comments</li>
                             </ul>
@@ -73,34 +78,85 @@
                         </ul>
                         <ul class="post-social">
                             <li><h5>Share:</h5></li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            {{-- <li><a href="#"><i class="fa fa-facebook"></i></a></li> --}}
+                            <a class="addthis_button_facebook_share" fb:share:layout="button"></a>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                             <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                            {{-- <div class="addthis_inline_share_toolbox"></div> --}}
                         </ul>
                     </div>
                     <div class="comment-area">
                         <div class="title"><h3>Comment</h3></div>
+                       
+                        @foreach($blogDetail->comment as $comment)
                         <div class="single-comment">
                             <div class="img-box"><img src="{{ URL::asset('assets/images/news/c1.jpg') }}" alt=""></div>
-                            <h5>Joss Butlar</h5>
-                            <div class="date"><i class="fa fa-calendar"></i><p>24 Jun 2018</p></div>
-                            <div class="text"><p>How all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.</p></div>
-                            <a href="#">Replay</a>
+                            <h5>
+                                {{-- @if (Auth::check())
+                                    {{ Auth::user()->name }}
+                                @endif --}}
+                                {{ $comment->user->name }}
+                            </h5>
+                            <div class="date"><i class="fa fa-calendar"></i><p>
+                                @php
+                                    $date = date_create($comment->created_at);
+                                    echo date_format($date,'M d Y');
+                                @endphp
+                            </p></div>
+                            <div class="text"><p>{{ $comment->content }}</p></div>
+                           
                         </div>
+                        @foreach($comment->replies as $reply)
                         <div class="single-comment replay">
                             <div class="img-box"><img src="{{ URL::asset('assets/images/news/c2.jpg') }}" alt=""></div>
-                            <h5>Alex Jusika</h5>
-                            <div class="date"><i class="fa fa-calendar"></i><p>10 Jul 2018</p></div>
-                            <div class="text"><p>How all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system.</p></div>
+                            <h5>{{ $reply->user->name }}</h5>
+                            <div class="date"><i class="fa fa-calendar"></i><p>
+                                @php
+                                    $date = date_create($reply->created_at);
+                                    echo date_format($date,'M d Y');
+                                @endphp
+                            </p></div>
+                            <div class="text"><p>
+                                {{ $reply->content }}
+                            </p></div>
+                            <div class="form">
+                            <form action="{{ route('reply.store',$comment->id) }}" method="POST">
+                                @csrf
+                                
+                                <div class="row">
+                                    {{-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                        <input type="text" name="name" value="" placeholder="Your Name" required="">
+                                    </div> --}}
+                                    {{-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                        <input type="email" name="email" value="" placeholder="Your Email" required="">
+                                    </div> --}}
+                                    {{-- <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                        <input type="text" name="subject" value="" placeholder="Subject" required="">
+                                    </div> --}}
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                        <textarea placeholder="Message" name="message" required=""></textarea>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                        <button type="submit" class="btn-one">Reply</button>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
                         </div>
-                        <div class="single-comment">
+                        @endforeach
+
+                        {{-- @empty --}}
+                        
+                        @endforeach
+                       
+                        {{-- <div class="single-comment">
                             <div class="img-box"><img src="{{ URL::asset('assets/images/news/c3.jpg') }}" alt=""></div>
                             <h5>Joss Martin</h5>
                             <div class="date"><i class="fa fa-calendar"></i><p>24 Sep 2018</p></div>
                             <div class="text"><p>How all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.</p></div>
                             <a href="#">Replay</a>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="comment-box">
                         <div class="title"><h3>Your Comment</h3></div>
@@ -167,8 +223,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <h5><a href="blog-details.html">{{ $blog->name }}</a></h5>
-                            <div class="text"><i class="fa fa-calendar">16 Aug 2018</i></div>
+                            <h5><a href="{{ url('blog-details/'.$blog->slug) }}.html">{{ $blog->name }}</a></h5>
+                            <div class="text"><i class="fa fa-calendar">
+                                @php
+                                    $date = date_create($blog->created_at);
+                                    echo date_format($date,'M d Y');
+                                @endphp
+                            </i></div>
                         </div>
                         @endforeach
                         
@@ -208,22 +269,22 @@
                     <div class="sidebar-tag sidebar-wideget">
                         <div class="title"><h3>Popular Tags</h3></div>
                         <ul class="list clearfix">
-                            <li><a href="#" class="active">Finance</a></li>
-                            <li><a href="#">Expare</a></li>
-                            <li><a href="#">Idea</a></li>
-                            <li><a href="#">Service</a></li>
-                            <li><a href="#">Tips</a></li>
-                            <li><a href="#">Growth</a></li>
+                            {{-- <li><a href="#" class="active">Finance</a></li> --}}
+                            @foreach ($tags as $tag)
+                                <li><a href="{{ url('tag/'.$tag->slug) }}">{{ $tag->name }}</a></li>
+                            @endforeach
+                            {{-- <li><a href="#">Idea</a></li> --}}
+                            {{-- <li><a href="#">Service</a></li> --}}
+                            {{-- <li><a href="#">Tips</a></li> --}}
+                            {{-- <li><a href="#">Growth</a></li> --}}
                         </ul>
                     </div>
                     <div class="sidebar-follow sidebar-wideget">
                         <div class="title"><h3>Follow Us</h3></div>
                         <ul class="social-list clearfix">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                            <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            {{-- <li><a href=""><i class="fa fa-facebook"></i></a></li> --}}
+                            <div class="addthis_inline_follow_toolbox_cdhb"></div>
+                            {{-- <li style="display: block;"><a href="#"><i class="fa fa-twitter"></i></a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -239,8 +300,9 @@
 
 @section('scripts')
 <script type="text/javascript">
-    
 </script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5eb273e6a55fd0c8"></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5eb273e6a55fd0c8"></script>
 @endsection
 
 @section('style')

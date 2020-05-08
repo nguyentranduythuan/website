@@ -62,7 +62,12 @@
                                     </div>
                                 </div>
                                 <h5><a href="blog-details.html">{{ $blog->name }}</a></h5>
-                                <div class="text">24 Jun 2018</div>
+                                <div class="text">
+                                    @php
+                                    $date = date_create($blog->created_at);
+                                    echo date_format($date,'M d Y');
+                                @endphp
+                                </div>
                             </div>
                             @endforeach
                             {{-- <div class="single-item">

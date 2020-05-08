@@ -23,4 +23,9 @@ class Blog extends Model
     {
         return $this->hasMany(Comment::class,'blog_id');
     }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment','commentable');
+    }
 }

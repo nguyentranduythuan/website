@@ -38,6 +38,11 @@ class User extends Authenticatable
     ];
 
     public function comments(){
-        return $this->hasMany(Comment::class,'id_user');
+        return $this->hasMany('App\Models\Comment','id_user');
+    }
+
+    public function replies()
+    {
+        return $this->hasManyThrough(Reply::class,'user_id');
     }
 }

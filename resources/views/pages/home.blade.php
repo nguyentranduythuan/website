@@ -28,20 +28,25 @@
 <!-- main slider end -->
 <!-- about section -->
 <section class="about-us sec-pad">
-    {{-- <div class="container">
+    <div class="container">
         <div class="about-title centred">
             <div class="section-title">
                 <h2>GIỚI THIỆU</h2>
             </div>
         </div>
+        @foreach ($abouts as $about)
         <div class="row">
             <div class="col-md-6 col-sm-12 col-xs-12 about-column">
                 <div class="about-content">
-                    <h3><span>WeMarketing</span> là gì ?</h3>
+                    <h3><span>{{ $about->title }}</span></h3>
                     <div class="text">
-                        <p>WeMarketing cung cấp giải pháp marketing trực tiếp đến hàng trăm ngàn khách hàng thông qua tin nhắn SMS, mang lại hiệu quả cao với chi phí thấp và tiết kiệm thời gian cho doanh nghiệp.</p>
-                        <p>Chúng tôi cam kết về chất lượng dịch vụ cũng như giá cả cạnh tranh để đảm bảo đem lại cho khách hàng trải nghiệm tốt nhất về hiệu quả tiếp thị.</p>
-                        <p>WeMarketing được ra đời hướng đến các đối tượng doanh nghiệp doanh nghiệp vừa và nhỏ, các cửa hàng thực hiện các chương trình quảng cáo, tiếp thị một cách dễ dàng nhất, tiết kiệm thời gian nhất và hiệu quả nhất.</p>
+                        <p>
+                            @php
+                                $substr = substr($about->description, 0, 60);
+                                echo $substr.'...';
+                            @endphp
+                        </p>
+                        
                     </div>
                     <div class="button"><a href="{{ url('about.html') }}" class="btn-one">Xem thêm</a></div>
                 </div>
@@ -52,7 +57,8 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+        @endforeach
+    </div>
 </section>
 <!-- about section end -->
 <!-- our idea -->
@@ -70,12 +76,12 @@
                     <figure class="img-box">
                         <img src="{{ asset('uploads/'.$service->image) }}" alt="">
                         <div class="overlay">
-                            <a href="{{ url('service-detail/'.$service->slug) }}" class="btn-one">Xem thêm</a>
+                            <a href="{{ url('service-detail/'.$service->slug) }}.html" class="btn-one">Xem thêm</a>
                         </div>
                     </figure>
                     <div class="lower-content">
                         <div class="icon-box"><i class="flaticon-growth"></i></div>
-                        <h4><a href="service-details.html">{{ $service->title }}</a></h4>
+                        <h4><a href="{{ url('service-detail/'.$service->slug) }}.html">{{ $service->title }}</a></h4>
                         <div class="text"><p>
                             @php
                                 $substr = substr($service->description, 0, 30);
@@ -332,7 +338,7 @@
                             <figcaption>
                                 <div class="box">
                                     <div class="content">
-                                        <a href="{{ url('project-detail/'.$project->slug) }}"><i class="fa fa-link"></i></a>
+                                        <a href="{{ url('project-detail/'.$project->slug) }}.html"><i class="fa fa-link"></i></a>
                                     </div>
                                 </div>
                             </figcaption>
@@ -366,8 +372,10 @@
                     <div class="section-title centred">
                         <h2>LIÊN HỆ VỚI CHÚNG TÔI</h2>
                     </div>
+                    <div id="message"></div>
                     <div class="cta-form">
-                        <form method="post" action="#">
+                        <form method="post" action="{{ route('consultant') }}" id="default-form">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                     <input type="text" name="name" value="" placeholder="Your Name" required="">
@@ -378,13 +386,16 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                     <div class="select-box">
                                         <i class="fa fa-angle-down"></i>
-                                        <select class="text-capitalize selectpicker form-control required" name="form_subject" data-style="g-select" data-width="100%">
-                                            <option value="0" selected="">I Would like to Discuss</option>
-                                            <option value="1">Business Planning</option>
-                                            <option value="2">Insurence Planning</option>
-                                            <option value="2">Wealth Management</option>
-                                            <option value="2">Marketing Strategy</option>
+                                        <select class="text-capitalize selectpicker form-control required" name="subject" data-style="g-select" data-width="100%" id="select">
+                                            @foreach ($serviceCates as $cate)
+                                                <option value="{{ $cate->id }}" selected="selected">{{ $cate->name }}</option>
+                                            @endforeach
+                                            {{-- <option value="1">Business Planning</option> --}}
+                                            {{-- <option value="2">Insurence Planning</option> --}}
+                                            {{-- <option value="2">Wealth Management</option> --}}
+                                            {{-- <option value="2">Marketing Strategy</option> --}}
                                         </select>
+                                        <input type="text" name="result" readonly="readonly" id="result">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
@@ -412,43 +423,22 @@
         </div>
         <div class="row">
             <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-2 testimonials-column">
+                
                 <div class="testimonials-slider">
+                    @foreach ($customers as $customer)
                     <div class="testimonial-content">
                         <div class="content">
-                            <div class="author-thumb"><img src="{{ URL::asset('assets/images/home/t1.png') }}" alt=""></div>
+                            <div class="author-thumb"><img src="{{ asset('uploads/customer/'.$customer->image) }}" alt="con-meo" style="width: 70px;"></div>
                             <div class="text">
-                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit. Red quia numquam eius modi. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur</p>
+                                <p>{{ $customer->content }}</p>
                             </div>
                             <div class="author">
-                                <h4>Edward Silverman</h4>
-                                <p>Chairman</p>
+                                <h4>{{ $customer->name }}</h4>
+                                <p>{{ $customer->position }}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-content">
-                        <div class="content">
-                            <div class="author-thumb"><img src="{{ URL::asset('assets/images/home/t1.png') }}" alt=""></div>
-                            <div class="text">
-                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit. Red quia numquam eius modi. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur</p>
-                            </div>
-                            <div class="author">
-                                <h4>Edward Silverman</h4>
-                                <p>Chairman</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="content">
-                            <div class="author-thumb"><img src="{{ URL::asset('assets/images/home/t1.png') }}" alt=""></div>
-                            <div class="text">
-                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit. Red quia numquam eius modi. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur</p>
-                            </div>
-                            <div class="author">
-                                <h4>Edward Silverman</h4>
-                                <p>Chairman</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -505,9 +495,14 @@
                     <div class="lower-content">
                         <h3><a href="blog-details.html">{{ $blog->name }}</a></h3>
                         <ul class="meta">
-                            <li><i class="fa fa-calendar"></i>Jun 15, 2018</li>
+                            <li><i class="fa fa-calendar"></i>
+                                @php
+                                    $date = date_create($blog->created_at);
+                                    echo date_format($date,'M d Y');
+                                @endphp
+                            </li>
                             <li><i class="fa fa-tag"></i>{{ $blog->blogcate->name }}</li>
-                            <li><i class="fa fa-comments-o"></i>3 Comments</li>
+                            <li><i class="fa fa-comments-o"></i>{{ $blog->comment->count() }} Comments</li>
                         </ul>
                         <div class="text">
                             <p>
@@ -615,7 +610,30 @@
 
 @section('scripts')
 <script type="text/javascript">
-    
+    $(function(){
+        $('#select').change(function(){
+            var display = $('#select option:selected').text();
+            $('#result').val(display);
+        });
+    });
+</script>
+<script type="text/javascript">
+    $('#default-form').on('submit', function(e){
+        var form_data = $(this);
+        $.ajax({
+                    url: 'consultant.html',
+                    method: 'POST',
+                    data: form_data.serialize(),
+                    success: function(Response){
+                        console.log(Response);
+                        if(Response.message){
+                            $('#message').append('<div class="alert alert-success">'+Response.message+'</div>');
+                        }
+                    }
+                });
+               e.preventDefault();     
+    });
+
 </script>
 @endsection
 

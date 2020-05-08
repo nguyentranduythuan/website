@@ -34,4 +34,10 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'facebook' => [
+    'client_id' => env('facebook_id'),         // Your GitHub Client ID
+    'client_secret' => env('facebook_secret'), // Your GitHub Client Secret
+    'redirect' => env('facebook_url'),
+    ],
+
 ];

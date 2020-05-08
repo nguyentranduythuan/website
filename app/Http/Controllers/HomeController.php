@@ -13,6 +13,7 @@ use App\Models\About;
 use App\Models\ProjectCategory;
 use App\Models\BlogCategory;
 use App\Models\Comment;
+use App\Custommer;
 use Mail;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -23,11 +24,37 @@ class HomeController extends Controller
     public function index(){
         $serviceCates = ServiceCategory::all();
         $slides = Slide::all();
+        $abouts = About::all();
         $services = Service::inRandomOrder()->take(6)->get();
         $projects = Project::inRandomOrder()->take(8)->get();
         $blogs = Blog::inRandomOrder()->take(3)->get();
         $tags = Tag::inRandomOrder()->take(8)->get();
-        return view('pages.home',['slides'=>$slides,'services'=>$services,'projects'=>$projects,'blogs'=>$blogs,'tags'=>$tags,'serviceCates'=>$serviceCates]);
+        $customers = Custommer::all();
+        return view('pages.home',['slides'=>$slides,'abouts'=>$abouts,'services'=>$services,'projects'=>$projects,'blogs'=>$blogs,'tags'=>$tags,'serviceCates'=>$serviceCates,'customers'=>$customers]);
+    }
+
+    public function search(Request $request)
+    {
+        $serviceCates = ServiceCategory::all();
+        $blogs = Blog::inRandomOrder()->take(3)->get();
+        $search = $request->search;
+        //dd($searchs);
+        $services = Service::where('title','like','%$search%')->orwhere('description','like','%'.$search.'%')->orwhere('detail','like','%'.$search.'%')->orwhere('detail','like','%'.$search.'%')->paginate(5);
+        $services->appends($request->only('search'));
+        //dd($services);
+        $projects = Project::where('title','like','%'.$search.'%')->orwhere('description','like','%'.$search.'%')->orwhere('content','like','%'.$search.'%')->orwhere('content','like','%'.$search.'%')->paginate(5);
+        $projects->appends($request->only('search'));
+        dd($projects);
+        $blogs = Blog::where('name','like','%'.$search.'%')->orwhere('description','like','%'.$search.'%')->orwhere('content','like','%'.$search.'%')->paginate(5);
+        $blogs->appends($request->only('search'));
+        //dd($blogs);
+        return view('pages.search',['serviceCates'=>$serviceCates,'services'=>$services,'blogs'=>$blogs]);
+    }
+
+    public function master()
+    {
+        $serviceCates = ServiceCategory::all();
+        return view('layouts.master',['serviceCates'=>$serviceCates]);
     }
 
     public function about() {
@@ -87,6 +114,7 @@ class HomeController extends Controller
     public function blogs(){
         $serviceCates = ServiceCategory::all();
         $blogs = Blog::paginate(6);
+        //dd($blogs);
         $tags = Tag::all();
         return view('pages.blogs',['serviceCates'=>$serviceCates,'blogs'=>$blogs,'tags'=>$tags]);
     }
@@ -111,7 +139,9 @@ class HomeController extends Controller
         $blogCates = BlogCategory::all();
         $blogs = Blog::orderBy('created_at','desc')->take(3)->get();
         $blogDetail = Blog::where('slug',$slug)->first();
-        return view('pages.blogs_detail',['serviceCates'=>$serviceCates,'blogDetail'=>$blogDetail,'tags'=>$tags,'blogCates'=>$blogCates,'blogs'=>$blogs]);
+        $blog = Blog::all();
+        
+        return view('pages.blogs_detail',['serviceCates'=>$serviceCates,'blogDetail'=>$blogDetail,'tags'=>$tags,'blogCates'=>$blogCates,'blogs'=>$blogs,'blog'=>$blog]);
     }
 
     public function postContact(Request $request){
@@ -130,13 +160,32 @@ class HomeController extends Controller
         });
     }
 
+    public function consultant(Request $request){
+        
+        $arr = array(
+            'firstname' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'subject' => $request->result,
+            //'message' => $request->message
+        );
+        //dd($arr);
+        Mail::send('pages.mail',$arr,function($message) use ($arr){
+            $message->from($arr['email']);
+            $message->to('nguyentranduythuan@gmail.com');
+            $message->subject($arr['subject']);
+        });
+
+        return response()->json(['message' => 'Bạn đã gửi thông tin thành công. Chúng tôi sẽ liên hệ lại bạn'],200);
+    }
+
     public function contact(){
         $serviceCates = ServiceCategory::all();
         $blogs = Blog::inRandomOrder()->take(3)->get();
         return view('pages.contact',['serviceCates'=>$serviceCates,'blogs'=>$blogs]);
     }
 
-    public function login(){
+    public function getLogin(){
         $serviceCates = ServiceCategory::all();
         $blogs = Blog::inRandomOrder()->take(3)->get();
         return view('pages.login',['serviceCates'=>$serviceCates,'blogs'=>$blogs]);
@@ -177,17 +226,16 @@ class HomeController extends Controller
         return redirect()->route('postRegister')->with('thongbao','Bạn đã đăng kí thành công');
     }
 
-    public function comment(Request $request,$id)
-    {
-        $blog = Blog::find($id);
-        $comment = new Comment;
-        //$comment->parent_id = null;
-        $comment->name = $request->name;
-        $comment->content = $request->message;
-        $comment->blog()->associate($blog);
-        $comment->id_user = Auth::user()->id;
-        $comment->save();
-
-        return redirect()->route('blog_details',[$blog->slug])->with('message','Bạn đã đăng bình luận thành công');
-    }
+    // public function comment(Request $request,$id)
+    // {
+    //     $blog = Blog::find($id);
+    //     $comment = new Comment;
+    //     //$comment->parent_id = $comment->id;
+    //     $comment->name = $request->name;
+    //     $comment->content = $request->message;
+    //     $comment->blog()->associate($blog);
+    //     $comment->id_user = Auth::user()->id;
+    //     $comment->save();
+    //     return redirect()->route('blog_details',[$blog->slug])->with('message','Bạn đã đăng bình luận thành công');
+    // }
 }

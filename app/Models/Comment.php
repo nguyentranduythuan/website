@@ -14,6 +14,16 @@ class Comment extends Model
     }
 
     public function user() {
-    	return $this->belongsTo(User::class,'id_user');
+    	return $this->belongsTo('App\User','id_user');
+    }
+
+    public function commentable()
+    {
+    	return $this->morphTo();
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class,'comment_id');
     }
 }

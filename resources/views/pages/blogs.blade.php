@@ -39,12 +39,17 @@
                     <div class="lower-content">
                         <h3><a href="{{ url('/blog-details/'.$blog->slug) }}.html">{{ $blog->name }}</a></h3>
                         <ul class="meta">
-                            <li><i class="fa fa-calendar"></i>Jan 10, 2018</li>
+                            <li><i class="fa fa-calendar"></i>
+                                @php
+                                    $date = date_create($blog->created_at);
+                                    echo date_format($date,'M d Y');
+                                @endphp
+                                <li>
                             
                             
                             <li><i class="fa fa-tag"></i>{{ $blog->blogcate->name }}</li>
                             
-                            <li><i class="fa fa-comments-o"></i>3 Comments</li>
+                            <li><i class="fa fa-comments-o"></i>{{ $blog->comment->count() }} Comments</li>
                         </ul>
                         <div class="text">
                             <p>

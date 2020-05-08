@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
+        <meta property="og:url" content="http://www.vadsangal.in/share/{{-- {{ $data_array->id }} --}}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="{{-- {{ $data_array->newstitle }} --}}" />
+        <meta property="og:description" content="{{-- {{ $data_array->newstext }} --}}" />
+        <meta property="og:image" content="{{-- {{ asset('upload/news-event/'.$data_array->newsimage) }} --}}" />
+
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +22,7 @@
           window.Framework = {csrfToken: '{{ csrf_token() }}', sitekey:"{{ env('CAPTCHA_SITEKEY', '6LdlYpAUAAAAADPSckwnP1TuMEJoMHjxunRL1y-A') }}", tmk: {{ session()->has('user_id') ? session()->get('user_id') : 0}}};
           var HOT = "{{ url('/') }}";
       </script>
+
     </head>
     <!-- body wrapper -->
     <body class="body_wrapper">
@@ -36,8 +45,8 @@
                             <a href="#" title=""><li><i class="fa fa-user">{{ Auth::user()->name }}</i></li></a>
                             <a href="{{ route('dangxuat') }}" title=""><li><i class="fa fa-sign-in">Đăng xuất</i></li></a>
                             @else
-                            <a href="{{ route('dangxuat') }}" title=""><li><i class="fa fa-sign-in">Đăng nhập</i></li></a>
-                            <a href="{{ route('dangxuat') }}" title=""><li><i class="fa fa-sign-in">Đăng nhập</i></li></a>
+                            <a href="{{ route('dangnhap') }}" title=""><li><i class="fa fa-sign-in">Đăng nhập</i></li></a>
+                            <a href="{{ route('dangki') }}" title=""><li><i class="fa fa-sign-in">Đăng kí</i></li></a>
                             @endif
                         </ul>
                         @if(1==2)
@@ -104,7 +113,7 @@
                                 <div class="search-box-area">
                                     <div class="search-toggle"><i class="fa fa-search"></i></div>
                                     <div class="search-box">
-                                        <form method="post" action="index.html">
+                                        <form method="get" action="{{ route('search') }}">
                                             <div class="form-group">
                                                 <input type="search" name="search" placeholder="Tìm kiếm" required>
                                                 <button type="submit"><i class="fa fa-search"></i></button>
@@ -173,7 +182,7 @@
                             <div class="single-item">
                                 <div class="single-item-overlay">
                                     <div class="img-box">
-                                        <figure><img src="{{ URL::asset('assets/images/footer/1.jpg') }}" alt=""></figure>
+                                        <figure><img src="{{ URL::asset('uploads/blog/'.$blog->image) }}" alt="" style="width: 60px;"></figure>
                                         <div class="overlay">
                                             <div class="inner-box">
                                                 <ul class="content">
@@ -184,7 +193,12 @@
                                     </div>
                                 </div>
                                 <h6><a href="{{ url('blog-details',$blog->slug) }}.html">{{ $blog->name }}</a></h6>
-                                <div class="text">24 Jun 2018</div>
+                                <div class="text">
+                                    @php
+                                    $date = date_create($blog->created_at);
+                                    echo date_format($date,'M d Y');
+                                @endphp
+                                </div>
                             </div>
                             @endforeach
                             {{-- <div class="single-item">
@@ -265,14 +279,14 @@
             </div>
         </footer>
 
-        <div class="cd-signin-modal js-signin-modal"> <!-- this is the entire modal form, including the background -->
-        <div class="cd-signin-modal__container"> <!-- this is the container wrapper -->
-            <ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
+        {{-- <div class="cd-signin-modal js-signin-modal"> --}} <!-- this is the entire modal form, including the background -->
+        {{-- <div class="cd-signin-modal__container"> --}} <!-- this is the container wrapper -->
+            {{-- <ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
                 <li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
                 <li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
-            </ul>
+            </ul> --}}
 
-            <div class="cd-signin-modal__block js-signin-modal-block" data-type="login"> <!-- log in form -->
+           {{--  <div class="cd-signin-modal__block js-signin-modal-block" data-type="login"> <!-- log in form -->
                 <form class="cd-signin-modal__form">
                     <p class="cd-signin-modal__fieldset">
                         <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signin-email">E-mail</label>
@@ -298,9 +312,9 @@
                 </form>
                 
                 <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="reset">Forgot your password?</a></p>
-            </div> <!-- cd-signin-modal__block -->
+            </div> --}} <!-- cd-signin-modal__block -->
 
-            <div class="cd-signin-modal__block js-signin-modal-block" data-type="signup"> <!-- sign up form -->
+            {{-- <div class="cd-signin-modal__block js-signin-modal-block" data-type="signup"> <!-- sign up form -->
                 <form class="cd-signin-modal__form">
                     <p class="cd-signin-modal__fieldset">
                         <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">Username</label>
@@ -330,9 +344,9 @@
                         <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Create account">
                     </p>
                 </form>
-            </div> <!-- cd-signin-modal__block -->
+            </div> --}} <!-- cd-signin-modal__block -->
 
-            <div class="cd-signin-modal__block js-signin-modal-block" data-type="reset"> <!-- reset password form -->
+           {{--  <div class="cd-signin-modal__block js-signin-modal-block" data-type="reset"> <!-- reset password form -->
                 <p class="cd-signin-modal__message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
 
                 <form class="cd-signin-modal__form">
@@ -349,9 +363,9 @@
 
                 <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="login">Back to log-in</a></p>
             </div> <!-- cd-signin-modal__block -->
-            <a href="#0" class="cd-signin-modal__close js-close">Close</a>
-        </div> <!-- cd-signin-modal__container -->
-    </div> <!-- cd-signin-modal -->
+            <a href="#0" class="cd-signin-modal__close js-close">Close</a> --}}
+        {{-- </div> --}} <!-- cd-signin-modal__container -->
+    {{-- </div> --}} <!-- cd-signin-modal -->
         <!-- main-footer end -->
         <!-- footer bottom -->
         <section class="footer-bottom">
