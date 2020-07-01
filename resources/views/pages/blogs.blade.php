@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('pageTitle', "About")
+@section('pageTitle', "News")
 
 @section('breadcrumb')
     
@@ -30,14 +30,14 @@
                             <div class="overlay">
                                 <div class="inner-box">
                                     <ul class="content">
-                                        <li><a href="{{ url('/blog-details/'.$blog->slug) }}.html"><i class="fa fa-link"></i></a></li>
+                                        <li><a href="{{ url('/chi-tiet-tin-tuc/'.$blog->slug,$blog->id) }}.html"><i class="fa fa-link"></i></a></li>
                                     </ul>
                                 </div> 
                             </div>
                         </div>
                     </div>
                     <div class="lower-content">
-                        <h3><a href="{{ url('/blog-details/'.$blog->slug) }}.html">{{ $blog->name }}</a></h3>
+                        <h3><a href="{{ url('/chi-tiet-tin-tuc/'.$blog->slug,$blog->id) }}.html">{{ $blog->name }}</a></h3>
                         <ul class="meta">
                             <li><i class="fa fa-calendar"></i>
                                 @php
@@ -49,14 +49,24 @@
                             
                             <li><i class="fa fa-tag"></i>{{ $blog->blogcate->name }}</li>
                             
-                            <li><i class="fa fa-comments-o"></i>{{ $blog->comment->count() }} Comments</li>
+                            <li><i class="fa fa-comments-o"></i>
+                            @php
+                                if(isset($blog->comment)){
+                                    $a = $blog->comment->count();
+                                    $b = 0;
+                                    foreach($blog->comment as $comment){
+                                        if(isset($comment->replies)){
+                                            $b += $comment->replies->count();
+                                        }
+                                    }
+                                    echo $a + $b;
+                                }
+                            @endphp
+                            Comments</li>
                         </ul>
                         <div class="text">
                             <p>
-                                @php
-                                    $substr = substr($blog->description, 0, 100);
-                                    echo $substr.'...';
-                                @endphp
+                               {!! $blog->description !!}
                             </p>
                         </div>
                          
@@ -72,7 +82,7 @@
                         
                         
                         <div class="button">
-                            <a href="{{ url('/blog-details/'.$blog->slug) }}.html" class="btn-one">Read More</a>
+                            <a href="{{ url('/chi-tiet-tin-tuc/'.$blog->slug) }}.html" class="btn-one">Xem thêm</a>
                         </div>
                     </div>
                 </div>

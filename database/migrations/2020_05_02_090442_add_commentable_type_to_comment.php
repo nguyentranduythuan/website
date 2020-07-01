@@ -14,7 +14,7 @@ class AddCommentableTypeToComment extends Migration
     public function up()
     {
         Schema::table('comment', function (Blueprint $table) {
-            $table->string('commentable_type')->after('commentable_id');
+            $table->string('commentable_type')->after('commentable_id')->nullable();
         });
     }
 

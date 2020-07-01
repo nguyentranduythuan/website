@@ -27,9 +27,9 @@
             <div class="col-md-6 col-sm-12 col-xs-12 about-column">
                 @foreach ($abouts as $about)
                 <div class="about-content">
-                    <h3><span>{{ $about->title }}</span></h3>
+                    <h3><span>{{ $about->title }}</span> là gì?</h3>
                     <div class="text">
-                        <p>{{ $about->content }}</p>
+                        <p>{!! $about->content !!}</p>
                     </div>
                 </div>
                 @endforeach
@@ -53,7 +53,7 @@
 
 
 <!-- fact-counter section -->
-{{-- <div class="fact-counter sec-pad centered">
+<div class="fact-counter sec-pad centered">
     <div class="container">
         <div class="row">
             <div class="col-md-2 col-sm-6 col-xs-12 counter-colmun">
@@ -106,12 +106,12 @@
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 <!-- fact-counter section end -->
 
 
 <!-- faq & Strategy development -->
-{{-- <section class="faq-section strategy-section sec-pad">
+<section class="faq-section strategy-section sec-pad">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12 col-xs-12 faq-column">
@@ -170,7 +170,7 @@
             </div>
         </div>
     </div>
-</section> --}}
+</section>
 <!-- faq & Strategy development end -->
 
 
@@ -178,13 +178,16 @@
 <section class="choose-us">
     <div class="container">
         <div class="row">
-            {{-- <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
+            @foreach ($support as $sp)
+            <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
                 <div class="single-item">
                     <div class="icon-box"><i class="flaticon-clock"></i></div>
-                    <h4>40 years of Experience</h4>
-                    <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet.</p></div>
+                    <h4>{{ $sp->name }}</h4>
+                    <div class="text"><p>{!! $sp->content !!}.</p></div>
                 </div>
-            </div> --}}
+            </div>
+            @endforeach
+            
             {{-- <div class="col-md-4 col-sm-6 col-xs-12 choose-column">
                 <div class="single-item">
                     <div class="icon-box"><i class="flaticon-award"></i></div>
@@ -232,31 +235,34 @@
             <div class="section-title"><h2>ĐỘI NGỦ</h2></div>
         </div>
         <div class="row">
+            @foreach ($staff as $st)
             <div class="col-md-3 col-sm-6 col-xs-12 team-column">
                 <div class="single-item">
                     <div class="single-item-overlay">
                         <div class="img-box">
-                            <img src="{{ URL::asset('assets/images/team/1.jpg') }}" alt="">
+                            <img src="{{ asset('uploads/staff/'.$st->image) }}" alt="">
                             <div class="overlay">
                                 <div class="inner-box">
                                     <ul class="content">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                                        <li><a href="{{ url('/'.$st->link) }}"><i class="fa fa-facebook"></i></a></li>
+                                        {{-- <li><a href="#"><i class="fa fa-twitter"></i></a></li> --}}
+                                        {{-- <li><a href="#"><i class="fa fa-vimeo"></i></a></li> --}}
+                                        {{-- <li><a href="#"><i class="fa fa-skype"></i></a></li> --}}
                                     </ul>
                                 </div> 
                             </div>
                         </div>
                     </div>
                     <div class="lower-content">
-                        <h4><a href="#">Brown Angelino</a></h4>
-                        <div class="text">President</div>
-                        <div class="mail"><i class="fa fa-envelope-o"><a href="#">brown@tallent.com</a></i></div>
+                        <h4><a href="#">{{ $st->name }}</a></h4>
+                        <div class="text">{{ $st->position }}</div>
+                        <div class="mail"><i class="fa fa-envelope-o"><a href="#">{{ $st->email }}</a></i></div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 team-column">
+            @endforeach
+            
+            {{-- <div class="col-md-3 col-sm-6 col-xs-12 team-column">
                 <div class="single-item">
                     <div class="single-item-overlay">
                         <div class="img-box">
@@ -279,8 +285,8 @@
                         <div class="mail"><i class="fa fa-envelope-o"><a href="#">venanda@tallent.com</a></i></div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 team-column">
+            </div> --}}
+            {{-- <div class="col-md-3 col-sm-6 col-xs-12 team-column">
                 <div class="single-item">
                     <div class="single-item-overlay">
                         <div class="img-box">
@@ -303,8 +309,8 @@
                         <div class="mail"><i class="fa fa-envelope-o"><a href="#">astley@tallent.com</a></i></div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12 team-column">
+            </div> --}}
+            {{-- <div class="col-md-3 col-sm-6 col-xs-12 team-column">
                 <div class="single-item centred">
                     <div class="single-item-overlay">
                         <div class="img-box">
@@ -327,7 +333,7 @@
                         <div class="mail"><i class="fa fa-envelope-o"><a href="#">bernett@tallent.com</a></i></div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

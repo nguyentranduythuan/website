@@ -43,13 +43,13 @@
                             </div>
                             <br>
                             <button type="submit" class="btn btn-default">Đăng nhập
-                            </button>
+                            </button><br>
+                            <div class="col-md-4">
+                                <a href="{{ url('login/facebook') }}" title=""><li><i class="fa fa-facebook">Tài khoản Facebook</i></li></a>
+                            </div>
                         </form>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <a href="{{ url('login/facebook') }}" title=""><li><i class="fa fa-sign-in">Đăng nhập</i></li></a>
             </div>
         </div>
         <!-- end slide -->

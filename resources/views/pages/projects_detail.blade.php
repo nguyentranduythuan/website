@@ -34,7 +34,7 @@
                         <ul class="list">
                             {{-- <li><a href="#" class="active">Financial Services</a></li> --}}
                             @foreach ($categories as $cate)
-                                <li><a href="{{ url('category-project/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
+                                <li><a href="{{ url('danh-muc-du-an/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
                             @endforeach
                             
                             {{-- <li><a href="#">Investment Planning</a></li>

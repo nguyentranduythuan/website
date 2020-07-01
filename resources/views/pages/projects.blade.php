@@ -22,7 +22,7 @@
     <div class="container">
         <ul class="post-filter centred art-vmenu">
             @foreach($projectcates as $projectcate)
-            <li><a href="{{ url('category-project/'.$projectcate->slug) }}.html" title="">
+            <li><a href="{{ url('danh-muc-du-an/'.$projectcate->slug) }}.html" title="">
                 {{ $projectcate->name }}
             </li></a>
             @endforeach
@@ -60,7 +60,7 @@
                             <figcaption>
                                 <div class="box">
                                     <div class="content">
-                                        <a href="{{ url('/project-detail/'.$project->slug) }}.html"><i class="fa fa-link"></i></a>
+                                        <a href="{{ url('/chi-tiet-du-an/'.$project->slug) }}.html"><i class="fa fa-link"></i></a>
                                         <a href="{{ asset('uploads/project/'.$project->image) }}" class="lightbox-image"><i class="fa fa-search"></i></a>
                                     </div>
                                 </div>
@@ -176,14 +176,7 @@
                 </div>
             </div> --}}
         </div>
-        {{-- <ul class="link-btn centered">
-            <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-            <li><a href="#" class="active">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-        </ul> --}}
-        <div class="clearfix">
+        <div class="clearfix" style="padding: 50px">
             {{ $projects->links() }}
         </div>
     </div>

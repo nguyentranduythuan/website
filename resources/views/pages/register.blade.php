@@ -58,11 +58,11 @@
                             </button>
 
                         </form>
+                        <div class="col-md-2">
+                            <a href="{{ url('login/facebook') }}" title=""><li><i class="fa fa-facebook">Đăng kí với tài khoản FaceBook</i></li></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <a href="{{ url('login/facebook') }}" title=""><li><i class="fa fa-facebook">FaceBook</i></li></a>
             </div>
         </div>
         <!-- end slide -->

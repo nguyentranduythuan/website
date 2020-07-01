@@ -25,20 +25,18 @@
             <div class="col-md-4 col-sm-6 col-xs-12 service-column">
                 <div class="single-item hoverly-one">
                     <figure class="img-box">
-                        <img src="{{ asset('uploads/'.$service->image) }}" alt="">
+                        <img src="{{ asset('uploads/service/'.$service->image) }}" alt="">
                         <div class="overlay">
-                            <a href="{{ url('service-detail/'.$service->slug) }}.html" class="btn-one">Xem thêm</a>
+                            <a href="{{ url('chi-tiet-dich-vu/'.$service->slug) }}.html" class="btn-one">Xem thêm</a>
                         </div>
                     </figure>
                     <div class="lower-content">
                         <div class="icon-box"><i class="flaticon-growth"></i></div>
-                        <h4><a href="{{ url('service-detail/'.$service->slug) }}.html">{{ $service->title }}</a></h4>
+                        <h4><a href="{{ url('chi-tiet-dich-vu/'.$service->slug) }}.html">
+                           {{ $service->title }}
+                        </a></h4>
                         <div class="text"><p>
-                            @php
-                                //$a = url('service-detail/'.$service->slug).'.html';
-                                $substr = substr($service->description, 0, 70);
-                                echo $substr.'...';
-                            @endphp
+                            {!! $service->description !!}
                         </p></div>
                     </div>
                 </div>
@@ -165,16 +163,7 @@
                 </div>
             </div> --}}
         </div>
-        <div>
-            <div class="clearfix">
-                    {{ $services->links() }}
-            </div>
-            {{-- <div class="clearfix">
-                
-            </div> --}}
-        </div>
     </div>
-
 </section>
 <!-- service section end -->
 

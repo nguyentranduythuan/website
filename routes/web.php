@@ -10,44 +10,77 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Models\Service;
+// use App\Models\Service;
+use App\Models\AdminMenu;
+//Admin
+Route::group(['middleware' => 'web', 'prefix' => 'cms', 'namespace' => 'Admin'], function () {
 
+    Route::get('/', ['as' => 'admin_web', 'uses' => 'HomeController@index']);
+    Route::get('/login', ['as' => 'admin_web', 'uses' => 'LoginController@index']);
+    Route::post('/login', ['as' => 'admin_web', 'uses' => 'LoginController@post_login']);
+
+    Route::get('/logout', ['as' => 'admin_web', 'uses' => 'LoginController@logout']);
+
+    if (Schema::hasTable('admin_menus')) {
+        $menu = DB::table('admin_menus')->where('controller', '!=', 'NULL')->where("is_active", '1')->get();
+
+        foreach ($menu as $dt) {
+            Route::get('/' . $dt->model . '/', ['uses' => $dt->controller . '@index']);
+            Route::get('/' . $dt->model . '/lists', ['uses' => $dt->controller . '@index']);
+
+            Route::get('/' . $dt->model . '/add', ['uses' => $dt->controller . '@addData']);
+            Route::get('/' . $dt->model . '/add/{id}', ['uses' => $dt->controller . '@addData']);
+
+            Route::get('/' . $dt->model . '/edit/{id}', ['uses' => $dt->controller . '@editData']);
+
+            Route::get('/' . $dt->model . '/delete/{id}', ['uses' => $dt->controller . '@deleteData']);
+
+            Route::post('/' . $dt->model . '/lists', ['uses' => $dt->controller . '@index']);
+            Route::post('/' . $dt->model . '/ajax', ['uses' => $dt->controller . '@getDataAjax']);
+
+            Route::post('/' . $dt->model . '/add', ['uses' => $dt->controller . '@addData']);
+            Route::post('/' . $dt->model . '/add/{id}', ['uses' => $dt->controller . '@addData']);
+
+            Route::post('/' . $dt->model . '/edit/{id}', ['uses' => $dt->controller . '@editData']);
+
+            Route::post('/' . $dt->model . '/delete/{id}', ['uses' => $dt->controller . '@deleteData']);
+        }
+    }
+});
 // Route::post('login','Auth\LoginController@login')->name('login');
 // Route::get('logout','Auth\LoginController@logout')->name('logout');
 //Route::view('/','pages.home');
 Route::get('/', 'HomeController@index')->name('index');
 Route::get('index2','HomeController@master')->name('index2');
-Route::get('about.html', 'HomeController@about')->name('about');
-Route::get('service', 'HomeController@service')->name('service');
-Route::get('category-service/{slug}.html','HomeController@serviceByCate')->name('serbyCate');
-Route::get('service-detail/{slug}.html', 'HomeController@service_detail')->name('service-detail');
-Route::get('projects', 'HomeController@projects')->name('projects');
-Route::get('category-project/{slug}.html','HomeController@projectByCate');
+Route::get('gioi-thieu', 'HomeController@about')->name('about');
+Route::get('dich-vu', 'HomeController@service')->name('service');
+Route::get('danh-muc-dich-vu/{slug}.html','HomeController@serviceByCate')->name('serbyCate');
+Route::get('chi-tiet-dich-vu/{slug}.html', 'HomeController@service_detail')->name('service-detail');
+Route::get('du-an', 'HomeController@projects')->name('projects');
+Route::get('danh-muc-du-an/{slug}.html','HomeController@projectByCate');
 // Route::get('projects/{slug}', 'HomeController@project')->name('projects');
 //Route::get('project/{id}','HomeController@getProject');
-Route::get('project-detail/{slug}.html', 'HomeController@projects_detail')->name('projects');
+Route::get('chi-tiet-du-an/{slug}.html', 'HomeController@projects_detail')->name('projects');
 Route::get('tin-tuc', 'HomeController@blogs')->name('blog');
-Route::get('category-blog/{slug}.html','HomeController@blogByCate');
+Route::get('danh-muc-tin-tuc/{slug}.html','HomeController@blogByCate');
 Route::get('tag/{slug}.html','HomeController@blogByTag');
-Route::get('blog-details/{slug}.html', 'HomeController@blogs_detail')->name('blog_details');
-Route::get('contact.html', 'HomeController@contact')->name('contact');
+Route::get('chi-tiet-tin-tuc/{slug}/{id}.html', 'HomeController@blogs_detail')->name('blog_details');
+Route::get('lien-he', 'HomeController@contact')->name('contact');
 Route::post('contact.html', 'HomeController@postContact')->name('postData');
 Route::post('consultant.html', 'HomeController@consultant')->name('consultant');
-Route::get('dang-nhap','HomeController@getLogin')->name('dangnhap');
-Route::post('dang-nhap','HomeController@postLogin')->name('postLogin');
-Route::get('dang-xuat','HomeController@dangxuat')->name('dangxuat');
-Route::get('dang-ki','HomeController@register')->name('dangki');
-Route::post('dang-ki','HomeController@postRegister')->name('postRegister');
 Route::get('search','HomeController@search')->name('search');
 //Route::get('comment/{id}','HomeController@comment')->name('comment.create');
+Route::get('comment-list.html','CommentController@index');
+// Route::get('comment/add/{id}',['uses' => 'CommentController@store','as'=>'comment.store']);
+//Route::get('comment-add.html','CommentController@store')->name('comment');
+//Route::post('comment/add','CommentController@store')->name('comment.store');
 Route::get('comment/add/{id}',['uses' => 'CommentController@store','as'=>'comment.store']);
 Route::post('comment/add/{id}',['uses' => 'CommentController@store','as'=>'comment.store']);
-Route::get('comment/add/{id}',['uses' => 'CommentController@store','as'=>'comment.store']);
-Route::post('comment/add/{id}',['uses' => 'CommentController@store','as'=>'comment.store']);
-Route::get('reply/add/{id}',['uses' => 'CommentController@reply','as'=>'reply.store']);
-Route::post('reply/add/{id}',['uses' => 'CommentController@reply','as'=>'reply.store']);
-Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
-Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+//Route::post('comment/add/{id}','CommentController@store')->name('comment.store');
+//Route::get('reply/add/{id}',['uses' => 'CommentController@reply','as'=>'reply.store']);
+//Route::post('reply/add/{id}',['uses' => 'CommentController@reply','as'=>'reply.store']);
+//Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+//Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 
 Route::get('export', 'HomeController@export')->name('export');

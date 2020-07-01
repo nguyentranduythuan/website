@@ -1,0 +1,22 @@
+/***********************************/
+/**********GENERAL VARIABLE*********/
+/***********************************/
+
+/*Colour*/
+$red: #b7274b;
+$grey-text: #696969;
+$grey-light: #ebebeb;
+$grey-bg: #f6f6f5;
+$grey-dark: #363636;
+
+/*Fonts*/
+$font-hel: 'Helvetica', sans-serif;
+$font-hel-nueu: 'HelveticaNeue', sans-serif;
+
+@mixin prefix($property, $css) {
+    -webkit-#{$property} : $css;
+    -moz-#{$property} : $css;
+    -ms-#{$property} : $css;
+    -o-#{$property} : $css;
+    #{$property} : $css;
+}

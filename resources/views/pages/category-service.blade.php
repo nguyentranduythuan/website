@@ -32,12 +32,16 @@
                     </figure>
                     <div class="lower-content">
                         <div class="icon-box"><i class="flaticon-growth"></i></div>
-                        <h4><a href="{{ url('service-detail/'.$service->slug) }}.html">{{ $service->title }}</a></h4>
+                        <h4><a href="{{ url('chi-tiet-dich-vu/'.$service->slug) }}.html">
+                            @php
+                                $substr = substr($service->title, 0, 20);
+                                echo $substr.'...';
+                            @endphp
+                        </a></h4>
                         <div class="text"><p>
                             @php
-                                $a = url('service-detail/'.$service->slug).'.html';
                                 $substr = substr($service->description, 0, 70);
-                                echo $substr.'...<a href="'.$a.'">Xem thêm</a>';
+                                echo $substr.'...';
                             @endphp
                         </p></div>
                     </div>

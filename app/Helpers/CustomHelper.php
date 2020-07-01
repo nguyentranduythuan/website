@@ -668,4 +668,385 @@ function getMessagErrorWithCode($code)
 
     return $message[1];
 }
+
+function createdFolderNews()
+{
+    $dir = \Config::get('constants.DIR_NEWS');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderProject()
+{
+    $dir = \Config::get('constants.DIR_PROJECT');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderService()
+{
+    $dir = \Config::get('constants.DIR_SERVICE');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderCustommer()
+{
+    $dir = \Config::get('constants.DIR_CUSTOMER');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderBanner()
+{
+    $dir = \Config::get('constants.DIR_BANNER');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderSlide()
+{
+    $dir = \Config::get('constants.DIR_SLIDE');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderAboutUs()
+{
+    $dir = \Config::get('constants.DIR_ABOUT');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderAboutContent()
+{
+    $dir = \Config::get('constants.DIR_ABOUTCONTENT');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderAchievementContent()
+{
+    $dir = \Config::get('constants.DIR_AchievementContent');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderCompanyContent()
+{
+    $dir = \Config::get('constants.DIR_COMPANYCONTENT');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderStaff()
+{
+    $dir = \Config::get('constants.DIR_STAFF');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderSupport()
+{
+    $dir = \Config::get('constants.DIR_SUPPORT');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderBenefitContent()
+{
+    $dir = \Config::get('constants.DIR_BENEFIT');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderServiceTop()
+{
+    $dir = \Config::get('constants.DIR_SERVICETOP');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderServiceBot()
+{
+    $dir = \Config::get('constants.DIR_SERVICEBOT');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderPortfollio()
+{
+    $dir = \Config::get('constants.DIR_PORTFOLLIO');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderLogo()
+{
+    $dir = \Config::get('constants.DIR_LOGO');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderClientContent()
+{
+    $dir = \Config::get('constants.DIR_CLIENT');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
+function createdFolderContact()
+{
+    $dir = \Config::get('constants.DIR_CONTACT');
+    $dir_final = public_path($dir);
+    
+    if (!file_exists($dir_final)) {
+       mkdir($dir_final, 0777, true);
+    }
+
+    $folder = date("Y");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    $folder .= "/".date("m");
+    if (!file_exists($dir_final.$folder)) {
+       mkdir($dir_final.$folder, 0777, true);
+    }
+    return array("dir_final"=>$dir_final, "folder"=>$folder);
+}
+
 ?>

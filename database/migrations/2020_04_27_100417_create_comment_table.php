@@ -19,7 +19,7 @@ class CreateCommentTable extends Migration
             $table->string('content');
             $table->integer('blog_id')->unsigned();
             $table->foreign('blog_id')->references('id')->on('blog')->onDelete('cascade');
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_user')->nullable();
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();

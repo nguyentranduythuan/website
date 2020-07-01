@@ -14,7 +14,7 @@ class AddCommentableIdToComment extends Migration
     public function up()
     {
         Schema::table('comment', function (Blueprint $table) {
-            $table->integer('commentable_id')->after('blog_id');
+            $table->integer('commentable_id')->after('blog_id')->nullable();
         });
     }
 

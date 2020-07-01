@@ -26,7 +26,7 @@
                     <ul class="list">
                         {{-- <li><a href="#" class="active">Financial Planning</a></li> --}}
                         @foreach ($serviceCates as $cate)
-                            <li><a href="{{ url('category-service/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
+                            <li><a href="{{ url('danh-muc-dich-vu/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
                         @endforeach
                         
                         {{-- <li><a href="#">Investment Planning</a></li>
@@ -36,11 +36,11 @@
                         <li><a href="#">Wealth Management</a></li>
                         <li><a href="#">Mutual Funds</a></li> --}}
                     </ul>
-                    {{-- <div class="call centered">
+                    <div class="call centered">
                         <h5>Have Any Questions?</h5>
                         <p>Call Us:</p>
                         <h3><i class="fa fa-phone">0098453987</i></h3>
-                    </div> --}}
+                    </div>
                     {{-- <div class="download">
                         <a href="#">Download Brochure PDF <i class="fa fa-download"></i></a>
                         <a href="#">Download Brochure Doc <i class="fa fa-download"></i></a>

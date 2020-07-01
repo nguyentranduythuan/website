@@ -41,13 +41,6 @@
                         <ul class="top-bar">
                             <li><i class="fa fa-phone"></i>Phone: 0944.22.3879</li>
                             <li><i class="fa fa-envelope"></i>hotro@wemarketing.tech</li>
-                            @if(Auth::check())
-                            <a href="#" title=""><li><i class="fa fa-user">{{ Auth::user()->name }}</i></li></a>
-                            <a href="{{ route('dangxuat') }}" title=""><li><i class="fa fa-sign-in">Đăng xuất</i></li></a>
-                            @else
-                            <a href="{{ route('dangnhap') }}" title=""><li><i class="fa fa-sign-in">Đăng nhập</i></li></a>
-                            <a href="{{ route('dangki') }}" title=""><li><i class="fa fa-sign-in">Đăng kí</i></li></a>
-                            @endif
                         </ul>
                         @if(1==2)
                         <div class="language-switcher">
@@ -93,11 +86,11 @@
                                     <div class="navbar-collapse collapse clearfix">
                                         <ul class="navigation clearfix">
                                             <li class="{{ \Request::route()->getName() == 'index' ? 'current' : '' }}"><a href="{{ url('/') }}">Trang chủ</a></li>
-                                            <li class="{{ \Request::route()->getName() == 'about' ? 'current' : '' }}"><a href="{{ url('/about.html') }}">Giới thiệu</a></li>
-                                            <li class="{{ \Request::route()->getName() == 'service' ? 'current' : '' }}"><a href="{{ url('/service') }}">Dịch vụ</a></li>
-                                            <li class="{{ \Request::route()->getName() == 'projects' ? 'current' : '' }}"><a href="{{ url('/projects') }}">Dự án</a></li>
+                                            <li class="{{ \Request::route()->getName() == 'about' ? 'current' : '' }}"><a href="{{ url('/gioi-thieu') }}">Giới thiệu</a></li>
+                                            <li class="{{ \Request::route()->getName() == 'service' ? 'current' : '' }}"><a href="{{ url('dich-vu') }}">Dịch vụ</a></li>
+                                            <li class="{{ \Request::route()->getName() == 'projects' ? 'current' : '' }}"><a href="{{ url('du-an') }}">Dự án</a></li>
                                             <li class="{{ \Request::route()->getName() == 'blog' ? 'current' : '' }}"><a href="{{ url('tin-tuc') }}">Tin tức</a></li>
-                                            <li class="{{ \Request::route()->getName() == 'contact' ? 'current' : '' }}"><a href="{{ url('/contact.html') }}">Liên Hệ</a></li>
+                                            <li class="{{ \Request::route()->getName() == 'contact' ? 'current' : '' }}"><a href="{{ url('/lien-he') }}">Liên Hệ</a></li>
                                         </ul>
                                         <!-- mobile menu -->
                                         <ul class="mobile-menu clearfix">
@@ -161,7 +154,7 @@
                             </div>
                             <ul class="list">
                                 @foreach($serviceCates as $cate)
-                                <li><a href="{{ url('category-service/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
+                                <li><a href="{{ url('danh-muc-dich-vu/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
                                 @endforeach
                                {{--  <li><a href="#">Customer Insights</a></li>
                                 <li><a href="#">Advanced Analytics</a></li>
@@ -192,7 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h6><a href="{{ url('blog-details',$blog->slug) }}.html">{{ $blog->name }}</a></h6>
+                                <h6><a href="{{ url('chi-tiet-tin-tuc',$blog->slug) }}.html">{{ $blog->name }}</a></h6>
                                 <div class="text">
                                     @php
                                     $date = date_create($blog->created_at);

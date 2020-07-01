@@ -21,9 +21,6 @@ class CreateAdminUsersTable extends Migration
             $table->string('fullname', 128)->default("");
             $table->text('permissions');
             $table->integer('is_active')->default(0);
-            $table->integer('group_lawyer')->default(0);
-            $table->integer('supper_lawyer')->default(0);
-            $table->integer('count_du_an')->default(0);
             $table->timestamps();
         });
     }

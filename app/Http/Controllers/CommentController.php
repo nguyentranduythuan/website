@@ -10,38 +10,28 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
+	// public function __construct()
+	// {
+	// 	$this->middleware('auth');
+	// }
 
-    public function store(Request $request, $id)
+    public function store(Request $request,$id)
     {
     	$blog = Blog::find($id);
-    	//dd($blog);
+        //dd($blog);
         $comment = new Comment;
-        //$comment->parent_id = $comment->id;
+        $comment->parent_id = $request->comment_id;
         $comment->name = $request->name;
+        $comment->email = $request->email;
+        $comment->subject = $request->subject;
         $comment->content = $request->message;
         $comment->blog()->associate($blog);
-        $comment->id_user = Auth::user()->id;
+        //dd($comment);
+        //$comment->id_user = Auth::user()->id;
         //$blog->comments()->save($comment);
         $comment->save();
-    // return redirect()->route('blog_details',[$blog->slug])->with('message','Bạn đã đăng bình luận thành công');
-
-    	return back();
-    }
-
-    public function reply(Request $request, $id, Comment $comment)
-    {
-    	$comment = Comment::find($id);
-    	$reply = new Reply;
-    	$reply->content = $request->message;
-    	$reply->binhluan()->associate($comment);
-    	$reply->user_id = Auth::user()->id;
-    	//$comment->replies()->save($reply);
-    	$reply->save();
-
-    	return back();
+        return redirect()->route('blog_details',[$blog->id])->with('message','Bạn đã đăng bình luận thành công');
+    	//return back();
+        //return response()->json(['message' => 'Bạn đã đăng bình luận thành công'],200);
     }
 }

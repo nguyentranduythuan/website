@@ -35,16 +35,29 @@
                             <ul class="meta">
                                 <li><i class="fa fa-calendar"></i>
                                     @php
-                                    $date = date_create($blogDetail->created_at);
-                                    echo date_format($date,'M d Y');
-                                @endphp
+                                        $date = date_create($blogDetail->created_at);
+                                        echo date_format($date,'M d Y');
+                                    @endphp
                                 </li>
                                 <li><i class="fa fa-tag"></i>{{ $blogDetail->blogcate->name }}</li>
-                                <li><i class="fa fa-comments-o"></i>3 Comments</li>
+                                <li><i class="fa fa-comments-o"></i>
+                                    @php
+                                        if(isset($blogDetail->comment)){
+                                        $a = $blogDetail->comment->count();
+                                        $b = 0;
+                                        foreach($blogDetail->comment as $comment){
+                                            if(isset($comment->replies)){
+                                                $b += $comment->replies->count();
+                                            }
+                                        }
+                                        echo $a + $b;
+                                    }
+                                    @endphp
+                                </li>
                             </ul>
                             <div class="text">
-                                <p>{{ $blogDetail->description }}</p>
-                                <p>{{ $blogDetail->content }}</p>
+                                <p>{!! $blogDetail->description !!}</p>
+                                <p>{!! $blogDetail->content !!}</p>
                             </div>
                         </div>
                     </div>
@@ -88,100 +101,53 @@
                     </div>
                     <div class="comment-area">
                         <div class="title"><h3>Comment</h3></div>
-                       
                         @foreach($blogDetail->comment as $comment)
                         <div class="single-comment">
                             <div class="img-box"><img src="{{ URL::asset('assets/images/news/c1.jpg') }}" alt=""></div>
-                            <h5>
-                                {{-- @if (Auth::check())
-                                    {{ Auth::user()->name }}
-                                @endif --}}
-                                {{ $comment->user->name }}
-                            </h5>
-                            <div class="date"><i class="fa fa-calendar"></i><p>
-                                @php
-                                    $date = date_create($comment->created_at);
-                                    echo date_format($date,'M d Y');
-                                @endphp
-                            </p></div>
-                            <div class="text"><p>{{ $comment->content }}</p></div>
-                           
+                            <h5>{{ $comment->name }}</h5>
+                            <div class="date"><i class="fa fa-calendar"></i><p>24 Jun 2018</p></div>
+                            <div class="text"><p>{{ $comment->content }}.</p></div>
+                            <button type="button" class="btn btn-default reply" id="{{ $comment->id }}" style="margin-left: 500px; color: red;">Reply</button>
                         </div>
-                        @foreach($comment->replies as $reply)
-                        <div class="single-comment replay">
-                            <div class="img-box"><img src="{{ URL::asset('assets/images/news/c2.jpg') }}" alt=""></div>
-                            <h5>{{ $reply->user->name }}</h5>
-                            <div class="date"><i class="fa fa-calendar"></i><p>
-                                @php
-                                    $date = date_create($reply->created_at);
-                                    echo date_format($date,'M d Y');
-                                @endphp
-                            </p></div>
-                            <div class="text"><p>
-                                {{ $reply->content }}
-                            </p></div>
-                            <div class="form">
-                            <form action="{{ route('reply.store',$comment->id) }}" method="POST">
-                                @csrf
-                                
-                                <div class="row">
-                                    {{-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                        <input type="text" name="name" value="" placeholder="Your Name" required="">
-                                    </div> --}}
-                                    {{-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                        <input type="email" name="email" value="" placeholder="Your Email" required="">
-                                    </div> --}}
-                                    {{-- <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                        <input type="text" name="subject" value="" placeholder="Subject" required="">
-                                    </div> --}}
-                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                        <textarea placeholder="Message" name="message" required=""></textarea>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                        <button type="submit" class="btn-one">Reply</button>
-                                    </div>
+                            @foreach ($comment->replies as $reply)
+                                <div class="single-comment replay">
+                                    <div class="img-box"><img src="{{ URL::asset('assets/images/news/c2.jpg') }}" alt=""></div>
+                                    <h5>{{ $reply->name }}</h5>
+                                    <div class="date"><i class="fa fa-calendar"></i><p>10 Jul 2018</p></div>
+                                    <div class="text"><p>{{ $reply->content }}.</p></div>
                                 </div>
-                            </form>
-                            </div>
-                        </div>
-                        @endforeach
-
-                        {{-- @empty --}}
+                            @endforeach
                         
                         @endforeach
-                       
-                        {{-- <div class="single-comment">
-                            <div class="img-box"><img src="{{ URL::asset('assets/images/news/c3.jpg') }}" alt=""></div>
-                            <h5>Joss Martin</h5>
-                            <div class="date"><i class="fa fa-calendar"></i><p>24 Sep 2018</p></div>
-                            <div class="text"><p>How all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.</p></div>
-                            <a href="#">Replay</a>
-                        </div> --}}
                     </div>
                     <div class="comment-box">
                         <div class="title"><h3>Your Comment</h3></div>
                         <div class="form">
-                            <form action="{{ route('comment.store',$blogDetail->id) }}" method="POST">
+                            <form action="{{ route('comment.store',$blogDetail->id) }}" method="post" id="form_comment">
                                 @csrf
                                 <div class="row">
+                                    
                                     <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                        <input type="text" name="name" value="" placeholder="Your Name" required="">
+                                        <input type="text" name="name" id="comment_name" value="" placeholder="Your Name" required="">
                                     </div>
-                                    {{-- <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
                                         <input type="email" name="email" value="" placeholder="Your Email" required="">
-                                    </div> --}}
-                                    {{-- <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                         <input type="text" name="subject" value="" placeholder="Subject" required="">
-                                    </div> --}}
+                                    </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                         <textarea placeholder="Message" name="message" required=""></textarea>
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                        <button type="submit" class="btn-one">Submit Now</button>
+                                        <input type="hidden" name="comment_id" value="0" id="comment_id">
+                                        <input type="submit" class="btn-one" id="submit">
                                     </div>
+                                    
                                 </div>
                             </form>
                         </div>
+                        <div id="comment_message"></div>
                     </div>
                 </div>
             </div>
@@ -198,7 +164,7 @@
                         <ul class="list">
                             {{-- <li><a href="#" class="active">Financial Services</a></li> --}}
                             @foreach ($blogCates as $cate)
-                               <li><a href="{{ url('category-blog/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
+                               <li><a href="{{ url('danh-muc-tin-tuc/'.$cate->slug) }}.html">{{ $cate->name }}</a></li>
                             @endforeach
                             
                             {{-- <li><a href="#">Investment Planning</a></li>
@@ -303,6 +269,13 @@
 </script>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5eb273e6a55fd0c8"></script>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5eb273e6a55fd0c8"></script>
+<script type="text/javascript">
+    $(document).on('click','.reply',function(){
+        var comment_id = $(this).attr('id');
+        $("#comment_id").val(comment_id);
+        $("#comment_name").focus();
+    });
+</script>
 @endsection
 
 @section('style')

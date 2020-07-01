@@ -21,30 +21,33 @@
 <section class="contact-info-section contact-page">
     <div class="container">
         <div class="row">
+            @foreach ($offices as $office)
             <div class="col-md-4 col-sm-4 col-xs-12 column">
                 <div class="single-item">
-                    <h4>Main Office</h4>
-                    <div class="text">Newyork City</div>
-                    <div class="phone"><i class="fa fa-phone"></i>350006892995</div>
-                    <div class="mail"><i class="fa fa-envelope"></i>info@tallentsolution</div>
+                    <h4>{{ $office->name }}</h4>
+                    <div class="text">{{ $office->address }}</div>
+                    <div class="phone"><i class="fa fa-phone"></i>{{ $office->phone }}</div>
+                    <div class="mail"><i class="fa fa-envelope"></i>{{ $office->email }}</div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-4 col-xs-12 column">
+            @endforeach
+            
+            {{-- <div class="col-md-4 col-sm-4 col-xs-12 column">
                 <div class="single-item">
                     <h4>Corporate Office</h4>
                     <div class="text">Los Angeles</div>
                     <div class="phone"><i class="fa fa-phone"></i>350006892995</div>
                     <div class="mail"><i class="fa fa-envelope"></i>info@tallentsolution</div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12 column">
+            </div> --}}
+            {{-- <div class="col-md-4 col-sm-4 col-xs-12 column">
                 <div class="single-item">
                     <h4>Branch Office</h4>
                     <div class="text">San Fransisico</div>
                     <div class="phone"><i class="fa fa-phone"></i>350006892995</div>
                     <div class="mail"><i class="fa fa-envelope"></i>info@tallentsolution</div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

@@ -1,647 +1,407 @@
-@extends('layouts.master')
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('pageTitle', "Home")
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="{{ asset('frontent/img/favicon.png') }}">
 
-@section('breadcrumb')
-    
-@endsection
+        <title>SRC</title>
 
-@section('content')
-<!--main slider-->
-<section class="main-slider">
-    <div class="main-slider-carousel owl-carousel owl-theme">
-        @foreach($slides as $slide)
-        <div class="slide" style="background-image:url({{ asset('uploads/slide/'.$slide->image ) }})">
-            <div class="container">
-                <div class="content">
-                    <h1>{{ $slide->name }}</h1>
-                    <div class="tp-btn">
-                        <a href="#" class="btn-one">Purchase Now</a>
-                    </div>
+        <!-- Bootstrap core CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Fonts -->
+        <link href='{{ asset('frontent/fonts/fonts.css') }}' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <!-- WOW -->
+        <link href="{{ asset('frontent/css/animate.css') }}" rel="stylesheet">
+        <!--OWL carousel-->
+        <link rel="stylesheet" href="{{ asset('frontent/css/owl.carousel.css') }}">
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('frontent/css/style.css') }}" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-fixed-top">
+            <div class="container-fluid">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a data-to="banner" class="navbar-brand" href="#"><img class="img-responsive" src="{{ asset('frontent/img/logo.png') }}" /></a>
                 </div>
+
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right text-uppercase">
+                        <li><a class="active" data-to="banner" href="#">home</a></li>
+                        <li><a data-to="about" href="#">about</a></li>
+                        <li><a data-to="service" href="#">services</a></li>
+                        <li><a data-to="port" href="#">portfolio</a></li>
+                        <li><a data-to="client" href="#">clients</a></li>
+                        <li><a data-to="footer" href="#">contact</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+
             </div>
-        </div>
+        </nav>
+
+
+        @foreach($banners as $banner)
+        <section class="section-banner" style="background-image:url({{ asset('uploads/banner/'.$banner->logo) }});">
+            <div class="container-fluid text-center">
+
+                <img class="img-responsive center-block wow fadeIn" data-wow-delay=".4s" src="{{ asset('uploads/banner/'.$banner->image) }}" />
+                <h2 class="text-uppercase wow fadeIn" data-wow-delay="1s" >{{ $banner->title }} </h2>
+                
+            </div>
+        </section>
         @endforeach
         
-    </div>
-</section>
-<!-- main slider end -->
-<!-- about section -->
-<section class="about-us sec-pad">
-    <div class="container">
-        <div class="about-title centred">
-            <div class="section-title">
-                <h2>GIỚI THIỆU</h2>
-            </div>
-        </div>
-        @foreach ($abouts as $about)
-        <div class="row">
-            <div class="col-md-6 col-sm-12 col-xs-12 about-column">
-                <div class="about-content">
-                    <h3><span>{{ $about->title }}</span></h3>
-                    <div class="text">
-                        <p>
-                            @php
-                                $substr = substr($about->description, 0, 60);
-                                echo $substr.'...';
-                            @endphp
-                        </p>
-                        
+        @foreach($abouts as $about)
+        <section class="section-about">
+            <div class="container text-center">
+                <h2 class="text-uppercase wow fadeIn">{{ $about->title }}</h2>
+                <div class="row wow fadeIn">
+                    <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+                        <p><h6 style="font-size: 15px;">{!! $about->content !!}</h6>.</p>
                     </div>
-                    <div class="button"><a href="{{ url('about.html') }}" class="btn-one">Xem thêm</a></div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 about-column">
-                <div class="img-box">
-                    <figure><img src="{{ URL::asset('assets/images/about/1.jpg') }}" alt=""></figure>
-                </div>
-            </div>
-        </div>
+        </section>
         @endforeach
-    </div>
-</section>
-<!-- about section end -->
-<!-- our idea -->
-<section class="our-service sec-pad">
-    <div class="container">
-        <div class="idea-title centred">
-            <div class="section-title">
-                <h2>DỊCH VỤ</h2>
-            </div>
-        </div>
-        <div class="row">
-            @foreach ($services as $service)
-            <div class="col-md-4 col-sm-6 col-xs-12 service-column">
-                <div class="single-item hoverly-one">
-                    <figure class="img-box">
-                        <img src="{{ asset('uploads/'.$service->image) }}" alt="">
-                        <div class="overlay">
-                            <a href="{{ url('service-detail/'.$service->slug) }}.html" class="btn-one">Xem thêm</a>
-                        </div>
-                    </figure>
-                    <div class="lower-content">
-                        <div class="icon-box"><i class="flaticon-growth"></i></div>
-                        <h4><a href="{{ url('service-detail/'.$service->slug) }}.html">{{ $service->title }}</a></h4>
-                        <div class="text"><p>
-                            @php
-                                $substr = substr($service->description, 0, 30);
-                                echo $substr;
-                            @endphp
-                        </p></div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-            {{-- <div class="col-md-4 col-sm-6 col-xs-12 service-column">
-                <div class="single-item hoverly-one">
-                    <figure class="img-box">
-                        <img src="{{ URL::asset('assets/images/service/2.jpg') }}" alt="">
-                        <div class="overlay">
-                            <a href="service-details.html" class="btn-one">Xem thêm</a>
-                        </div>
-                    </figure>
-                    <div class="lower-content">
-                        <div class="icon-box"><i class="flaticon-meeting"></i></div>
-                        <h4><a href="service-details.html">Email Marketing</a></h4>
-                        <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit</p></div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="col-md-4 col-sm-6 col-xs-12 service-column">
-                <div class="single-item hoverly-one">
-                    <figure class="img-box">
-                        <img src="{{ URL::asset('assets/images/service/3.jpg') }}" alt="">
-                        <div class="overlay">
-                            <a href="service-details.html" class="btn-one">Xem thêm</a>
-                        </div>
-                    </figure>
-                    <div class="lower-content">
-                        <div class="icon-box"><i class="flaticon-line-graph"></i></div>
-                        <h4><a href="service-details.html">Quảng cáo Google Ads</a></h4>
-                        <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit</p></div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="col-md-4 col-sm-6 col-xs-12 service-column">
-                <div class="single-item hoverly-one">
-                    <figure class="img-box">
-                        <img src="{{ URL::asset('assets/images/service/4.jpg') }}" alt="">
-                        <div class="overlay">
-                            <a href="service-details.html" class="btn-one">Xem thêm</a>
-                        </div>
-                    </figure>
-                    <div class="lower-content">
-                        <div class="icon-box"><i class="flaticon-growth"></i></div>
-                        <h4><a href="service-details.html">Quảng cáo Facebook</a></h4>
-                        <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit</p></div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="col-md-4 col-sm-6 col-xs-12 service-column">
-                <div class="single-item hoverly-one">
-                    <figure class="img-box">
-                        <img src="{{ URL::asset('assets/images/service/5.jpg') }}" alt="">
-                        <div class="overlay">
-                            <a href="service-details.html" class="btn-one">Xem thêm</a>
-                        </div>
-                    </figure>
-                    <div class="lower-content">
-                        <div class="icon-box"><i class="flaticon-meeting"></i></div>
-                        <h4><a href="service-details.html">Quảng cáo Youtube</a></h4>
-                        <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit</p></div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="col-md-4 col-sm-6 col-xs-12 service-column">
-                <div class="single-item hoverly-one">
-                    <figure class="img-box">
-                        <img src="{{ URL::asset('assets/images/service/6.jpg') }}" alt="">
-                        <div class="overlay">
-                            <a href="service-details.html" class="btn-one">Xem thêm</a>
-                        </div>
-                    </figure>
-                    <div class="lower-content">
-                        <div class="icon-box"><i class="flaticon-line-graph"></i></div>
-                        <h4><a href="service-details.html">Quảng cáo Mobile</a></h4>
-                        <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit</p></div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="col-md-4 col-sm-6 col-xs-12 service-column">
-                <div class="single-item hoverly-one">
-                    <figure class="img-box">
-                        <img src="{{ URL::asset('assets/images/service/6.jpg') }}" alt="">
-                        <div class="overlay">
-                            <a href="service-details.html" class="btn-one">Xem thêm</a>
-                        </div>
-                    </figure>
-                    <div class="lower-content">
-                        <div class="icon-box"><i class="flaticon-line-graph"></i></div>
-                        <h4><a href="service-details.html">Quảng cáo Cốc Cốc</a></h4>
-                        <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit</p></div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="col-md-4 col-sm-6 col-xs-12 service-column">
-                <div class="single-item hoverly-one">
-                    <figure class="img-box">
-                        <img src="{{ URL::asset('assets/images/service/6.jpg') }}" alt="">
-                        <div class="overlay">
-                            <a href="service-details.html" class="btn-one">Xem thêm</a>
-                        </div>
-                    </figure>
-                    <div class="lower-content">
-                        <div class="icon-box"><i class="flaticon-line-graph"></i></div>
-                        <h4><a href="service-details.html">Quảng cáo Zalo</a></h4>
-                        <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit</p></div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="col-md-4 col-sm-6 col-xs-12 service-column">
-                <div class="single-item hoverly-one">
-                    <figure class="img-box">
-                        <img src="{{ URL::asset('assets/images/service/6.jpg') }}" alt="">
-                        <div class="overlay">
-                            <a href="service-details.html" class="btn-one">Xem thêm</a>
-                        </div>
-                    </figure>
-                    <div class="lower-content">
-                        <div class="icon-box"><i class="flaticon-line-graph"></i></div>
-                        <h4><a href="service-details.html">Content marketing</a></h4>
-                        <div class="text"><p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit</p></div>
-                    </div>
-                </div>
-            </div> --}}
-        </div>
-    </div>
-</section>
-<!-- our idea end -->
-@if(1==2)
-<!-- our-skills & business-growth -->
-<section class="skills-growth sec-pad">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-12 col-xs-12 skills-column">
-                <div class="our-skills">
-                    <div class="sec-title-two">Our Skills</div>
-                </div>
-                <div class="skills-content">
-                    <div class="progress-levels">
-                        <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
-                            <div class="box-title">
-                                <h6>Financial Planning</h6>
-                            </div>
-                            <div class="percent"></div>
-                            <div class="inner">
-                                <div class="bar">
-                                    <div class="bar-innner">
-                                        <div class="bar-fill" data-percent="80"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-levels">
-                        <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
-                            <div class="box-title">
-                                <h6>Social Marketing</h6>
-                            </div>
-                            <div class="percent"></div>
-                            <div class="inner">
-                                <div class="bar">
-                                    <div class="bar-innner">
-                                        <div class="bar-fill" data-percent="70"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-levels">
-                        <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
-                            <div class="box-title">
-                                <h6>Trust Investment</h6>
-                            </div>
-                            <div class="percent"></div>
-                            <div class="inner">
-                                <div class="bar">
-                                    <div class="bar-innner">
-                                        <div class="bar-fill" data-percent="75"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-levels">
-                        <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
-                            <div class="box-title">
-                                <h6>Stock Marketting</h6>
-                            </div>
-                            <div class="percent"></div>
-                            <div class="inner">
-                                <div class="bar">
-                                    <div class="bar-innner">
-                                        <div class="bar-fill" data-percent="85"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-levels">
-                        <div class="progress-box wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1500ms">
-                            <div class="box-title">
-                                <h6>Wealth Management</h6>
-                            </div>
-                            <div class="percent"></div>
-                            <div class="inner">
-                                <div class="bar">
-                                    <div class="bar-innner">
-                                        <div class="bar-fill" data-percent="91"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5 col-sm-12 col-xs-12 col-md-offset-1 growth-colunm">
-                <div class="growth-title">
-                    <div class="sec-title-two">Business Growth</div>
-                </div>
-                <div class="chart-outer">
-                    <div id="Chart1" style="height: 400px; width: 100%;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- our-skills & business-growth section end -->
-@endif
-<!-- latest project -->
-<section class="latest-project sec-pad">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-12 col-xs-12 project-column">
-                <div class="project-content">
-                    <div class="sec-title-two">DỰ ÁN ĐÃ THỰC HIỆN</div>
-                    <div class="text">
-                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit sed quia non qui dolorem ipsum quia dolor sit amet, consectetur, adipis civelit. Red quia numquam eius modi. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur</p>
-                    </div>
-                    <div class="button"><a href="{{ url('projects.html') }}" class="btn-one">Xem thêm</a></div>
-                </div>
-            </div>
-            <div class="col-md-8 col-sm-12 col-xs-12 project-column">
-                <div class="two-column-carousel">
-                    @foreach ($projects as $project)
-                    <div class="inner-box">
-                        <figure class="imghvr-strip-vert-bottom-right">
-                            <img src="{{ asset('uploads/project/'.$project->image) }}" alt="">
-                            <figcaption>
-                                <div class="box">
-                                    <div class="content">
-                                        <a href="{{ url('project-detail/'.$project->slug) }}.html"><i class="fa fa-link"></i></a>
-                                    </div>
-                                </div>
-                            </figcaption>
-                        </figure>
+        
+        @foreach($about_infos as $info)
+        <section class="section-masterpiece" style="background-image:url({{ asset('frontent/img/masterpieceBg.jpg') }});">
+            <div class="container text-center">
+                <h3 class="text-uppercase wow fadeIn">{{ $info->title }}</h3>
+                <div class="row">
+                    @foreach($info->content as $content)
+                    <div class="col-sm-4 block wow fadeInUp">
+                        <img class="center-block img-responsive" src="{{ asset('uploads/aboutcontent/'.$content->image) }}" />
+                        <p class="text-uppercase">{{ $content->name }}</p>
                     </div>
                     @endforeach
-                    {{-- <div class="inner-box">
-                        <figure class="imghvr-strip-vert-bottom-right">
-                            <img src="{{ URL::asset('assets/images/gallery/2.jpg') }}" alt="">
-                            <figcaption>
-                                <div class="box">
-                                    <div class="content">
-                                        <a href="project-details.html"><i class="fa fa-link"></i></a>
+                </div>
+            </div>
+        </section>
+        @endforeach
+        
+        @foreach($company as $com)
+        <section class="section-glance">
+            <div class="container text-center">
+                <h3 class="text-uppercase wow fadeIn">{{ $com->title }}</h3>
+                <p class="wow fadeIn">{!! $com->description !!}</p>
+                <div class="row">
+                    @foreach($com->content as $content)
+                    <div class="col-md-4 col-sm-6 block wow flipInY">
+                        <h1>{!! $content->name !!}</h1>
+                        <img class="center-block img-responsive" src="{{ asset('uploads/company_content/'.$content->image) }}" />
+                        <p><h6 style="font-size: 15px;">{!! $content->content !!}</h6></p>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+        @endforeach
+        
+        @foreach($achievement as $info)
+        <section class="section-partner">
+            <div class="container text-center">
+                <h5 class="wow fadeIn">{{ $info->title }}</h5>
+                <div class="row wow fadeIn" data-wow-delay=".4s">
+                    @foreach($info->content as $content)
+                    <div class="col-sm-6">
+                        <img class="center-block img-responsive" src="{{ asset('uploads/achievement_content/'.$content->image) }}"/>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+        @endforeach
+
+       
+        <section class="section-detail">
+            <div class="container text-center">
+                 @foreach($jobs as $job)
+                <h3 class="text-uppercase wow fadeIn">{{ $job->title }}</h3>
+                <p class="wow fadeIn" data-wow-delay=".2s">{!! $job->description !!}</p>
+                @endforeach
+                
+                <div class="row">
+                    
+                    <div class="col-sm-4 block wow zoomIn">
+                        <div>
+                            <h6 class="detail-number">1</h6>
+                            <h5 class="black-title text-uppercase" style="background-image:url({{ asset('frontent/img/detail_0004_Layer-3.png') }});">{{ $jobcontent1->title }}</h5>
+                            <div class="clearfix"></div>
+                            <div class="detail-text">
+                                <p>
+                                    {!! $jobcontent1->content !!}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4 block wow zoomIn" data-wow-delay=".3s">
+                        <div>
+                            <h6 class="detail-number">2</h6>
+                            <h5 class="black-title text-uppercase" style="background-image:url({{ asset('frontent/img/detail_0003_Layer-2.png') }});">{{ $jobcontent2->title }}</h5>
+                            <div class="clearfix"></div>
+                            <div class="detail-text">
+                                <p>
+                                    {!! $jobcontent2->content !!}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 block wow zoomIn" data-wow-delay=".6s">
+                        <div>
+                            <h6 class="detail-number">3</h6>
+                            <h5 class="black-title text-uppercase" style="background-image:url({{ asset('frontent/img/detail_0002_Layer-4.png') }});">{{ $jobcontent3->title }}</h5>
+                            <div class="clearfix"></div>
+                            <div class="detail-text">
+                                <p>
+                                    {!! $jobcontent3->content !!}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-sm-offset-2 block wow zoomIn" data-wow-delay=".3s">
+                        <div>
+                            <h6 class="detail-number">4</h6>
+                            <h5 class="black-title text-uppercase" style="background-image:url({{ asset('frontend/img/detail_0001_Layer-5.png') }});">{{ $jobcontent4->title }}</h5>
+                            <div class="clearfix"></div>
+                            <div class="detail-text">
+                                <p>
+                                    {!! $jobcontent4->content !!}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-4 block wow zoomIn" data-wow-delay=".6s">
+                        <div>
+                            <h6 class="detail-number">5</h6>
+                            <h5 class="black-title text-uppercase" style="background-image:url({{ asset('frontent/img/detail_0000_Layer-1.png') }});">{{ $jobcontent5->title }}</h5>
+                            <div class="clearfix"></div>
+                            <div class="detail-text">
+                                <p>
+                                    {!! $jobcontent5->content !!}
+                                </p>
+                        </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </section>
+        
+        
+        @foreach($benefits as $benefit)
+        <section class="section-benefit">
+            <div class="container text-center">
+                <h3 class="text-uppercase wow fadeIn">{{ $benefit->title }}</h3>
+                <div class="row">
+                    @foreach($benefit->content as $content)
+                    <div class="col-md-4 col-sm-6 block text-center wow fadeInUp">
+                        <img class="center-block img-responsive" src="{{ asset('uploads/benefit/'.$content->image) }}" />
+                        <p>{!! $content->content !!}</p>
+                    </div>
+                    @endforeach
+                    {{-- <div class="col-md-4 col-sm-6 block text-center wow fadeInUp" data-wow-delay=".3s">
+                        <img class="center-block img-responsive" src="img/benefit_0004_Layer-2.png" />
+                        <p>Cost Operational efficiency</p>
+                    </div> --}}
+                    {{-- <div class="col-md-4 col-sm-6 block text-center wow fadeInUp" data-wow-delay=".6s">
+                        <img class="center-block img-responsive" src="img/benefit_0003_Layer-3.png" />
+                        <p></p>
+                    </div> --}}
+                    {{-- <div class="col-md-4 col-sm-6 block text-center wow fadeInUp" data-wow-delay=".3s">
+                        <img class="center-block img-responsive" src="img/benefit_0002_Layer-4.png" />
+                        <p>Manage projects in a highly visible way</p>
+                    </div> --}}
+                    {{-- <div class="col-md-4 col-sm-6 block text-center wow fadeInUp" data-wow-delay=".6s">
+                        <img class="center-block img-responsive" src="img/benefit_0001_Layer-5.png" />
+                        <p>We are experts in to a very high spec</p>
+                    </div> --}}
+                    {{-- <div class="col-md-4 col-sm-6 block text-center wow fadeInUp" data-wow-delay=".9s">
+                        <img class="center-block img-responsive" src="img/benefit_0000_Layer-6.png" />
+                        <p>Love long-term relationships &amp; evolve to get better</p>
+                    </div> --}}
+                </div>
+                <img class="line-break img-responsive center-block wow fadeIn" src="{{ asset('frontent/img/line.png') }}" />
+            </div>
+        </section>
+        @endforeach
+
+        <section class="section-service">
+            <div class="container text-center">
+                <h2 class="text-uppercase wow fadeIn">services</h2>
+                <div class="service-item wow fadeIn" data-wow-delay=".3s">
+                    <img class="img-responsive" src="{{ asset('uploads/service_top/'.$service1->image) }}" />
+                    <h5 class="text-capitalize">{{ $service1->title }}</h5>
+                </div>
+                <div class="service-item wow fadeIn" data-wow-delay=".6s">
+                    <img class="img-responsive" src="{{ asset('uploads/service_top/'.$service2->image) }}" />
+                    <h5 class="text-capitalize">{{ $service2->title }}</h5>
+                </div>
+                <div class="service-item wow fadeIn" data-wow-delay=".9s">
+                    <img class="img-responsive" src="{{ asset('uploads/service_top/'.$service3->image) }}" />
+                    <h5 class="text-capitalize">{{ $service3->title }}</h5>
+                </div>
+                <div class="service-item wow fadeIn" data-wow-delay="1.2s">
+                    <img class="img-responsive" src="{{ asset('uploads/service_top/'.$service4->image) }}" />
+                    <h5 class="text-capitalize">{{ $service4->title }}</h5>
+                </div>
+                <div class="service-center wow fadeIn">
+                    <img class="img-responsive" src="{{ asset('uploads/service_top/'.$service5->image) }}" />
+                    <h5 class="text-uppercase">{{ $service5->title }}</h5>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-explain">
+            <div class="container">
+                <div class="row">
+                    @foreach($servicebots as $service)
+                    <div class="col-md-6 block wow fadeInLeft">
+                        <div>
+                            <h5 class="black-title text-uppercase" style="background-image:url({{ asset('uploads/service_bot/'.$service->image) }});">{{ $service->title }}</h5>
+                            <p>{!! $service->content !!}.</p>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <img class="line-break img-responsive center-block wow fadeIn" src="{{ asset('frontent/img/line.png') }}" />
+            </div>
+        </section>
+        
+        
+        <section class="section-port">
+            <div class="container">
+                <h2 class="text-uppercase text-center wow fadeIn">portfolio</h2>
+                <?php 
+                $index = 0;
+                $xhtml = '';
+                    foreach ($portfollios as $porfolio) 
+                    {
+                        
+                        
+                        $linkBigImage = asset('uploads/portfollio/'.$porfolio->image.'');
+                        $linkSmallImage = asset('uploads/logo/'.$porfolio->logo.'');
+                        if($index %2 == 0)
+                        {
+                            
+                            $xhtml .= '<div class="row">
+                                        <div class="col-sm-6 wow fadeInUp">
+                                            <img class="img-responsive" src="'.$linkBigImage.'" />
+                                        </div>
+                                        <div class="col-sm-6 wow fadeInUp" data-wow-delay=".3s">
+                                            <h5 class="text-uppercase">'.$porfolio->title.'</h5>
+                                            <img class="img-responsive" src="'.$linkSmallImage.'" />
+                                            <p>'.$porfolio->content.'</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </figcaption>
-                        </figure>
+                                    <hr/>';
+                        }
+                        else if($index %2 != 0)
+                        {
+                            //dd("gffdgfdgfdgfdghfdgfdgfd");
+                            $xhtml .= '<div class="row">
+                                        <div class="col-sm-6 col-sm-push-6 wow fadeInUp">
+                                            <img class="img-responsive" src="'.$linkBigImage.'" />
+                                        </div>
+                                        <div class="col-sm-6 col-sm-pull-6 wow fadeInUp" data-wow-delay=".3s">
+                                            <h5 class="text-uppercase">'.$porfolio->title.'</h5>
+                                            <img class="img-responsive" src="'.$linkSmallImage.'" />
+                                            <p>'.$porfolio->content.'</p>
+                                        </div>
+                                    </div>
+
+                                    <hr/>';
+                        }
+                    ++$index;
+        }
+    ?>
+            {!! $xhtml !!}
+                <img class="line-break img-responsive center-block wow fadeIn" src="{{ asset('frontent/img/line.png') }}" />
+                <button class="more-btn center-block text-center wow fadeInDown">
+                    <p class="text-uppercase">more</p>
+                    <i class="fa fa-angle-down"></i>
+                </button>
+            </div>
+            
+        </section>
+        
+
+        <section class="section-client">
+            @foreach($clients as $client)
+            <div class="container text-center">
+                <h2 class="text-uppercase wow fadeIn">clients</h2>
+                <p class="wow fadeInUp" data-wow-delay=".3s">{{ $client->title }}</p>
+                <div class="client-carousel owl-carousel wow fadeInLeft">
+                    @foreach($client->content as $content)
+                    <div class="client-logo"><img class="img-responsive" src="{{ asset('uploads/client/'.$content->image) }}" /></div>
+                    @endforeach
+                </div>
+                <div class="client-dots-container"></div>
+            </div>
+            @endforeach
+        </section>
+
+        <footer class="section-footer wow fadeIn" style="background-image:url({{ asset('frontent/img/footerBg.jpg') }});">
+            <div class="container text-center">
+                <div class="row">
+                    @foreach($contacts as $contact)
+                    <div class="col-sm-4">
+                        <img class="center-block img-responsive" src="{{ asset('uploads/contact/'.$contact->image) }}" />
+                        <h5 class="text-uppercase">{{ $contact->name }}</h5>
+                        <p>
+                            {!! $contact->description !!}
+                        </p>
+                    </div>
+                    @endforeach
+
+                    {{-- <div class="col-sm-4">
+                        <img class="center-block img-responsive" src="img/footerIcon2.png" />
+                        <h5 class="text-uppercase">call us</h5>
+                        <p>(+84) 08 62885033</p>
+                    </div>  --}}
+
+                    {{-- <div class="col-sm-4">
+                        <img class="center-block img-responsive" src="img/footerIcon3.png" />
+                        <h5 class="text-uppercase">mail us</h5>
+                        <p>contact@srcvn.com</p>
                     </div> --}}
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- latest project end -->
-<!-- cta section -->
-<section class="cta-section sec-pad" style="background-image: url({{ URL::asset('assets/images/home/cta.jpg') }});">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-sm-12 col-xs-12 col-md-offset-1 cta-column">
-                <div class="cta-content">
-                    <div class="section-title centred">
-                        <h2>LIÊN HỆ VỚI CHÚNG TÔI</h2>
-                    </div>
-                    <div id="message"></div>
-                    <div class="cta-form">
-                        <form method="post" action="{{ route('consultant') }}" id="default-form">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                    <input type="text" name="name" value="" placeholder="Your Name" required="">
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                    <input type="email" name="email" value="" placeholder="Your Email" required="">
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <div class="select-box">
-                                        <i class="fa fa-angle-down"></i>
-                                        <select class="text-capitalize selectpicker form-control required" name="subject" data-style="g-select" data-width="100%" id="select">
-                                            @foreach ($serviceCates as $cate)
-                                                <option value="{{ $cate->id }}" selected="selected">{{ $cate->name }}</option>
-                                            @endforeach
-                                            {{-- <option value="1">Business Planning</option> --}}
-                                            {{-- <option value="2">Insurence Planning</option> --}}
-                                            {{-- <option value="2">Wealth Management</option> --}}
-                                            {{-- <option value="2">Marketing Strategy</option> --}}
-                                        </select>
-                                        <input type="text" name="result" readonly="readonly" id="result">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <input type="text" name="phone" value="" placeholder="Your Phone" required="">
-                                </div>
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                    <div class="cta-btn centred"><button type="submit" class="btn-one">GỬI</button></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- cta section end -->
-<!-- testimonials section -->
-<section class="testimonials-section centred sec-pad">
-    <div class="container">
-        <div class="testimonials-title">
-            <div class="section-title">
-                <h2>KHÁCH HÀNG NÓI GÌ VỀ CHÚNG TÔI</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-sm-12 col-xs-12 col-md-offset-2 testimonials-column">
-                
-                <div class="testimonials-slider">
-                    @foreach ($customers as $customer)
-                    <div class="testimonial-content">
-                        <div class="content">
-                            <div class="author-thumb"><img src="{{ asset('uploads/customer/'.$customer->image) }}" alt="con-meo" style="width: 70px;"></div>
-                            <div class="text">
-                                <p>{{ $customer->content }}</p>
-                            </div>
-                            <div class="author">
-                                <h4>{{ $customer->name }}</h4>
-                                <p>{{ $customer->position }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- testimonials section end -->
-<!-- brand section -->
-<section class="brand-section">
-    <div class="container">
-        <ul class="brand-slider">
-            <li>
-                <figure class="img-box"><a href="#"><img src="{{ URL::asset('assets/images/brand/1.png') }}" alt=""></a></figure>
-            </li>
-            <li>
-                <figure class="img-box"><a href="#"><img src="{{ URL::asset('assets/images/brand/2.png') }}" alt=""></a></figure>
-            </li>
-            <li>
-                <figure class="img-box"><a href="#"><img src="{{ URL::asset('assets/images/brand/3.png') }}" alt=""></a></figure>
-            </li>
-            <li>
-                <figure class="img-box"><a href="#"><img src="{{ URL::asset('assets/images/brand/4.png') }}" alt=""></a></figure>
-            </li>
-            <li>
-                <figure class="img-box"><a href="#"><img src="{{ URL::asset('assets/images/brand/5.png') }}" alt=""></a></figure>
-            </li>
-        </ul>
-    </div>
-</section>
-<!-- brand section end -->
-<!-- news section -->
-<section class="news-section sec-pad">
-    <div class="container">
-        <div class="news-title centred">
-            <div class="section-title">
-                <h2>TIN TỨC MỚI CẬP NHẬT</h2>
-            </div>
-        </div>
-        <div class="row">
-            @foreach ($blogs as $blog)
-            <div class="col-md-4 col-sm-6 col-xs-12 news-column">
-                <div class="single-item">
-                    <div class="single-item-overlay">
-                        <div class="img-box">
-                            <img src="{{ asset('uploads/blog/'.$blog->image) }}" alt="">
-                            <div class="overlay">
-                                <div class="inner-box">
-                                    <ul class="content">
-                                        <li><a href="blog-details.html"><i class="fa fa-link"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lower-content">
-                        <h3><a href="blog-details.html">{{ $blog->name }}</a></h3>
-                        <ul class="meta">
-                            <li><i class="fa fa-calendar"></i>
-                                @php
-                                    $date = date_create($blog->created_at);
-                                    echo date_format($date,'M d Y');
-                                @endphp
-                            </li>
-                            <li><i class="fa fa-tag"></i>{{ $blog->blogcate->name }}</li>
-                            <li><i class="fa fa-comments-o"></i>{{ $blog->comment->count() }} Comments</li>
-                        </ul>
-                        <div class="text">
-                            <p>
-                                @php
-                                $substr = substr($blog->description, 0, 70);
-                                echo $substr.'...';
-                            @endphp
-                            </p>
-                        </div>
-                        <ul class="list">
-                            @foreach ($tags as $tag)
-                                <li><a href="{{ url('tag/'.$tag->slug) }}">{{ $tag->name }}</a></li>
-                            @endforeach
-                            {{-- <li><a href="#">Marketing</a></li> --}}
-                            {{-- <li><a href="#">News</a></li> --}}
-                            {{-- <li><a href="#">Sports</a></li> --}}
-                        </ul>
-                        <div class="button">
-                            <a href="{{ url('blog-details/'.$blog->slug) }}" class="btn-one">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-            {{-- <div class="col-md-4 col-sm-6 col-xs-12 news-column">
-                <div class="single-item">
-                    <div class="single-item-overlay">
-                        <div class="img-box">
-                            <img src="{{ URL::asset('assets/images/news/3.jpg') }}" alt="">
-                            <div class="overlay">
-                                <div class="inner-box">
-                                    <ul class="content">
-                                        <li><a href="blog-details.html"><i class="fa fa-link"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lower-content">
-                        <h3><a href="blog-details.html">Save money for your future.</a></h3>
-                        <ul class="meta">
-                            <li><i class="fa fa-calendar"></i>Jul 15, 2018</li>
-                            <li><i class="fa fa-tag"></i>Planning</li>
-                            <li><i class="fa fa-comments-o"></i>3 Comments</li>
-                        </ul>
-                        <div class="text">
-                            <p>Lorem ipsum dolor sit amet constur adipisicing elit sed do eiusmtempor incid et dolore magna aliqu enim minim veniam quis nostrud exercittion ullamco laboris nisi ut aliquip excepteur sint occaecat cuidatat non proident sunt in culpa qui officia.</p>
-                        </div>
-                        <ul class="list">
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Marketing</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Sports</a></li>
-                        </ul>
-                        <div class="button">
-                            <a href="blog-details.html" class="btn-one">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-            {{-- <div class="col-md-4 col-sm-6 col-xs-12 news-column">
-                <div class="single-item">
-                    <div class="single-item-overlay">
-                        <div class="img-box">
-                            <img src="{{ URL::asset('assets/images/news/2.jpg') }}" alt="">
-                            <div class="overlay">
-                                <div class="inner-box">
-                                    <ul class="content">
-                                        <li><a href="blog-details.html"><i class="fa fa-link"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lower-content">
-                        <h3><a href="blog-details.html">Improve your business growth</a></h3>
-                        <ul class="meta">
-                            <li><i class="fa fa-calendar"></i>Nov 15, 2018</li>
-                            <li><i class="fa fa-tag"></i>Planning</li>
-                            <li><i class="fa fa-comments-o"></i>7 Comments</li>
-                        </ul>
-                        <div class="text">
-                            <p>Lorem ipsum dolor sit amet constur adipisicing elit sed do eiusmtempor incid et dolore magna aliqu enim minim veniam quis nostrud exercittion ullamco laboris nisi ut aliquip excepteur sint occaecat cuidatat non proident sunt in culpa qui officia.</p>
-                        </div>
-                        <ul class="list">
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Marketing</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Sports</a></li>
-                        </ul>
-                        <div class="button">
-                            <a href="blog-details.html" class="btn-one">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-        </div>
-    </div>
-</section>
-<!-- news section end -->
+        </footer>
 
-{!! App\Http\Controllers\ModuleController::box_bye_now() !!}
+        <div class="loader">
+            <img src="{{ asset('frontent/img/loading.gif') }}" />
+        </div>
 
-@endsection
+        <!--Scripts links-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="{{ asset('frontent/js/wow.min.js') }}"></script>
+        <script>
+            new WOW().init();
+        </script>
+        <script src="{{ asset('frontent/js/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('frontent/js/script.js') }}"></script>
 
-@section('scripts')
-<script type="text/javascript">
-    $(function(){
-        $('#select').change(function(){
-            var display = $('#select option:selected').text();
-            $('#result').val(display);
-        });
-    });
-</script>
-<script type="text/javascript">
-    $('#default-form').on('submit', function(e){
-        var form_data = $(this);
-        $.ajax({
-                    url: 'consultant.html',
-                    method: 'POST',
-                    data: form_data.serialize(),
-                    success: function(Response){
-                        console.log(Response);
-                        if(Response.message){
-                            $('#message').append('<div class="alert alert-success">'+Response.message+'</div>');
-                        }
-                    }
-                });
-               e.preventDefault();     
-    });
-
-</script>
-@endsection
-
-@section('style')
-<style type="text/css">
-.min_h_160{
-    min-height: 160px;
-    display: block;
-}
-</style>
-@endsection
+    </body>
+</html>
